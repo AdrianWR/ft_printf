@@ -6,7 +6,7 @@
 /*   By: aroque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 02:46:09 by aroque            #+#    #+#             */
-/*   Updated: 2020/01/28 17:50:40 by aroque           ###   ########.fr       */
+/*   Updated: 2020/01/31 23:19:51 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,25 +26,35 @@ int	ft_printf(const char *format, ...)
 	return (len);
 }
 
+t_format	*ft_format_initializer(const char *format, va_list args)
+{
+	t_format	*fmt;
+
+	if(!(fmt = malloc(sizeof(*fmt))))
+		return (NULL);
+	fmt->input = (char *)format;
+	fmt->output = ft_strdup("");
+	fmt->start = 0;
+	fmt->pos = 0;
+	fmt->len = ft_strlen(fmt->input);
+	va_copy(fmt->args, args);
+	return (fmt);
+}
+
 int	ft_vprintf(const char *format, va_list args)
 {
-	int			len;
-	char		*str;
-	t_holder	*holder;
-	
-	len = 0;
-	str = ft_strdup(format);
-	while (*str)
+	t_format	fmt;
+		
+	fmt = *ft_format_initializer(format, args);
+	while (fmt.pos <= fmt.len)
 	{
-		if (*str == '%')
+		if (fmt.input[fmt.pos] == '%')
 		{
-			str++;
-			holder = ft_parser(&str);
-			len += ft_handler(holder, args);
-			//str++;
+			ft_process(&fmt);
 		}
-		len += ft_putchar(*str);
-		str++;
+		fmt.pos++;
 	}
-	return (len);
+	ft_pre_output(&fmt);
+	ft_putstr(fmt.output);
+	return (ft_strlen(fmt.output));
 }

@@ -6,7 +6,7 @@
 #    By: aroque <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/26 02:48:28 by aroque            #+#    #+#              #
-#    Updated: 2020/01/28 12:51:45 by aroque           ###   ########.fr        #
+#    Updated: 2020/01/31 22:14:40 by aroque           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,10 @@ SRC			=	${SRC_DIR}/ft_printf.c			\
 				${SRC_DIR}/ft_putaddress.c		\
 				${SRC_DIR}/ft_puthex.c			\
 				${SRC_DIR}/ft_parser.c			\
-				${SRC_DIR}/ft_handler.c	
+				${SRC_DIR}/ft_parser_args.c		\
+				${SRC_DIR}/ft_itoa_base.c		\
+				${SRC_DIR}/ft_process.c			\
+				${SRC_DIR}/ft_replace.c
 
 OBJ_DIR		=	./build
 OBJ			=	$(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC))
@@ -40,7 +43,6 @@ TEST_DIR	=	./test
 all: $(NAME)
 
 $(NAME): $(OBJ) $(LIB)
-	$(MAKE) -C $(LIB_DIR)
 	@cp $(LIB) $(OBJ_DIR)
 	@mv $(subst $(LIB_DIR), $(OBJ_DIR), $(LIB)) $(NAME)
 	$(AR) $(AR_FLAGS) $@ $(OBJ)
@@ -52,10 +54,11 @@ $(LIB):
 	$(MAKE) -C $(LIB_DIR)
 
 clean:
+	$(MAKE) -C $(LIB_DIR) clean
 	$(RM) $(OBJ)
 
 fclean: clean
-	$(RM) $(NAME)
+	$(RM) $(NAME) ${LIB}
 
 re: fclean all
 
