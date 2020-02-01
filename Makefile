@@ -6,7 +6,7 @@
 #    By: aroque <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/26 02:48:28 by aroque            #+#    #+#              #
-#    Updated: 2020/01/31 22:14:40 by aroque           ###   ########.fr        #
+#    Updated: 2020/02/01 02:00:03 by aroque           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,8 +24,6 @@ INCLUDES	=	./include
 
 SRC_DIR		=	./src
 SRC			=	${SRC_DIR}/ft_printf.c			\
-				${SRC_DIR}/ft_putaddress.c		\
-				${SRC_DIR}/ft_puthex.c			\
 				${SRC_DIR}/ft_parser.c			\
 				${SRC_DIR}/ft_parser_args.c		\
 				${SRC_DIR}/ft_itoa_base.c		\

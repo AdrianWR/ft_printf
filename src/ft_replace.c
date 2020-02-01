@@ -6,7 +6,7 @@
 /*   By: aroque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 22:03:20 by aroque            #+#    #+#             */
-/*   Updated: 2020/02/01 01:54:28 by aroque           ###   ########.fr       */
+/*   Updated: 2020/02/01 02:00:51 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "libft.h"
 #include <stdio.h>
 
-char *	ft_chardup(int c)
+char	*ft_chardup(int c)
 {
 	char *dup;
 
