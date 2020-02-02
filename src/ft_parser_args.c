@@ -6,12 +6,13 @@
 /*   By: aroque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 11:15:20 by aroque            #+#    #+#             */
-/*   Updated: 2020/01/31 23:45:25 by aroque           ###   ########.fr       */
+/*   Updated: 2020/02/02 15:30:08 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "libft.h"
+#include <stdio.h>
 
 void	ft_parser_flags(t_format *fmt, t_holder *holder)
 {
@@ -19,7 +20,7 @@ void	ft_parser_flags(t_format *fmt, t_holder *holder)
 	char	*str;
 
 	str = ft_strdup(fmt->input);
-	i = ++fmt->pos;
+	i = fmt->pos + 1;
 	while (ft_strchr(PLACEHOLDER_FLAGS, str[i]))
 	{
 		if (str[i] == '-')
@@ -41,7 +42,6 @@ void	ft_parser_width(t_format *fmt, t_holder *holder)
 	if (fmt->input[fmt->pos] == '*')
 		holder->width = va_arg(fmt->args, int);
 	else
-
 		holder->width = ft_atoi(&fmt->input[fmt->pos]);
 	while (ft_isdigit(fmt->input[fmt->pos]) || fmt->input[fmt->pos] == '*')
 		fmt->pos++;
@@ -53,9 +53,12 @@ void	ft_parser_precision(t_format *fmt, t_holder *holder)
 	{
 		fmt->pos++;
 		if (fmt->input[fmt->pos] == '*')
-			holder->width = va_arg(fmt->args, int);
+			holder->precision = va_arg(fmt->args, int);
 		else
-			holder->width = ft_atoi(&fmt->input[fmt->pos]);
+			if (!ft_isdigit(fmt->input[fmt->pos]))
+				holder->precision = 0;
+			else
+				holder->precision = ft_atoi(&fmt->input[fmt->pos]);
 		while (ft_isdigit(fmt->input[fmt->pos]) || fmt->input[fmt->pos] == '*')
 			fmt->pos++;
 	}
@@ -101,5 +104,5 @@ void	ft_parser_conversion(t_format *fmt, t_holder *holder)
 		i++;
 	}
 	free(conversions);
-	fmt->pos++;
+	//fmt->pos++;
 }

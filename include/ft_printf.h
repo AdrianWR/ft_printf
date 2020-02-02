@@ -6,7 +6,7 @@
 /*   By: aroque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 02:47:31 by aroque            #+#    #+#             */
-/*   Updated: 2020/02/01 01:48:13 by aroque           ###   ########.fr       */
+/*   Updated: 2020/02/02 16:55:51 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,13 @@ void		ft_pre_output(t_format *fmt);
 void		ft_process(t_format *fmt);
 void		ft_replace_conversion(t_holder *h, va_list args);
 void		ft_replace_width(t_holder *h);
+void		ft_replace_precision(t_holder *h);
 char		*ft_itoa_base(int n, const char *base);
+char		*ft_itoa_ubase(long long unsigned int n, const char *base);
+char		*ft_pointerdup(void *p);
+char		*ft_handle_d(t_holder *h, va_list args);
+char		*ft_handle_s(char *str);
+size_t		ft_abs(int n);
 t_holder	*ft_parser(t_format *fmt);
 
 #endif

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa_base.c                                     :+:      :+:    :+:   */
+/*   ft_itoa_ubase.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aroque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/29 10:06:14 by aroque            #+#    #+#             */
-/*   Updated: 2020/02/02 16:41:05 by aroque           ###   ########.fr       */
+/*   Created: 2020/02/01 02:17:06 by aroque            #+#    #+#             */
+/*   Updated: 2020/02/02 15:20:50 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,20 +36,12 @@ static int		ft_base_error(const char *base)
 	return (0);
 }
 
-static size_t	ft_digit_counter(long long int n, int base_len)
+static size_t	ft_digit_counter(long long unsigned int n, int base_len)
 {
 	if (!(n / base_len))
 		return (1);
 	else
 		return (ft_digit_counter(n / base_len, base_len) + 1);
-}
-
-size_t	ft_abs(long long int n)
-{
-	if (n < 0)
-		return (-(long long unsigned int)n);
-	else
-		return ((long long unsigned int)n);
 }
 
 /*
@@ -59,28 +51,23 @@ size_t	ft_abs(long long int n)
 ** For example, the decimal base would be "0123456789".
 */
 
-char			*ft_itoa_base(long long int n, const char *base)
+char			*ft_itoa_ubase(long long unsigned int n, const char *base)
 {
 	char	*s;
 	size_t	len;
-	size_t	nbr;
 	int		base_len;
 
 	if (ft_base_error(base))
 		return (NULL);
 	base_len = (int)ft_strlen(base);
 	len = ft_digit_counter(n, base_len);
-	n < 0 ? len++ : len;
-	nbr = ft_abs(n);
 	if (!(s = malloc((len + 1) * sizeof(*s))))
 		return (NULL);
 	s[len] = '\0';
 	while (len--)
 	{
-		s[len] = base[nbr % base_len];
-		nbr /= base_len;
+		s[len] = base[n % base_len];
+		n /= base_len;
 	}
-	if (n < 0)
-		s[0] = '-';
 	return (s);
 }

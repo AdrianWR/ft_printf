@@ -6,7 +6,7 @@
 /*   By: aroque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 16:13:48 by aroque            #+#    #+#             */
-/*   Updated: 2020/02/01 00:10:07 by aroque           ###   ########.fr       */
+/*   Updated: 2020/02/02 18:48:11 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,8 @@ void	ft_pre_output(t_format *fmt)
 static void	ft_holder_replace(t_holder *holder, va_list args)
 {
 	ft_replace_conversion(holder, args);
+	ft_replace_precision(holder);
 	ft_replace_width(holder);
-	//ft_replace_precision();
-	//ft_replace_flags();
 }
 
 static void	ft_join_replace(t_format *fmt, t_holder *holder)
@@ -42,7 +41,7 @@ static void	ft_join_replace(t_format *fmt, t_holder *holder)
 	tmp = ft_strdup(fmt->output);
 	free(fmt->output);
 	fmt->output	= ft_strjoin(tmp, holder->replace);
-	fmt->start = fmt->pos;
+	fmt->start = fmt->pos + 1;
 	free(tmp);
 }
 

@@ -6,7 +6,7 @@
 /*   By: aroque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 02:46:09 by aroque            #+#    #+#             */
-/*   Updated: 2020/01/31 23:19:51 by aroque           ###   ########.fr       */
+/*   Updated: 2020/02/02 18:48:23 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ t_format	*ft_format_initializer(const char *format, va_list args)
 int	ft_vprintf(const char *format, va_list args)
 {
 	t_format	fmt;
-		
+
 	fmt = *ft_format_initializer(format, args);
 	while (fmt.pos <= fmt.len)
 	{
