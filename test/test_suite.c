@@ -33,12 +33,12 @@ static void	ft_printf_test(const char *format, ...)
 
 int main(void)
 {
-	void *p;
-	char a;
+	//void *p;
+	//char a;
 	//short b;
 
-	p = NULL;
-	a = '4';
+	//p = NULL;
+	//a = '4';
    	//b = 649999;
 	(void) ft_printf_test;
 	//ft_printf_test("Short %hd\n", b);
@@ -96,6 +96,6 @@ int main(void)
 	//printf("Teste: %-10d\n", 1);
 	//printf("Teste: %+10d\n", 1);
 	//printf("Teste: %-+10d\n", 1);
+	//ft_printf("%-32s\n", "abc");
 	ft_printf("%-32s\n", NULL);
-	ft_printf("%-32s\n", "abc");
 }

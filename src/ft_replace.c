@@ -131,5 +131,6 @@ void	ft_replace_precision(t_holder *h)
 			h->replace = ft_strdup("0x");
 		}
 	}
+	free(src);
 }
 //ft_replace_flags();

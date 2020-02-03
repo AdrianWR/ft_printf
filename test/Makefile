@@ -15,7 +15,8 @@ NAME		=	test_ft_printf
 CC			=	gcc
 CC_FLAGS	=	-Wall	\
 				-Wextra	\
-				-Werror
+				-Werror	\
+				-g
 
 INCLUDES	=	../include
 

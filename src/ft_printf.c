@@ -43,18 +43,22 @@ t_format	*ft_format_initializer(const char *format, va_list args)
 
 int	ft_vprintf(const char *format, va_list args)
 {
-	t_format	fmt;
+	int			len;
+	t_format	*fmt;
 
-	fmt = *ft_format_initializer(format, args);
-	while (fmt.pos <= fmt.len)
+	fmt = ft_format_initializer(format, args);
+	while (fmt->pos <= fmt->len)
 	{
-		if (fmt.input[fmt.pos] == '%')
+		if (fmt->input[fmt->pos] == '%')
 		{
-			ft_process(&fmt);
+			ft_process(fmt);
 		}
-		fmt.pos++;
+		fmt->pos++;
 	}
-	ft_pre_output(&fmt);
-	ft_putstr(fmt.output);
-	return (ft_strlen(fmt.output));
+	ft_pre_output(fmt);
+	ft_putstr(fmt->output);
+	len = ft_strlen(fmt->output);
+	free(fmt->output);
+	free(fmt);
+	return (len);
 }

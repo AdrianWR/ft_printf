@@ -53,5 +53,6 @@ void	ft_process(t_format *fmt)
 	holder = ft_parser(fmt);
 	ft_holder_replace(holder, fmt->args);
 	ft_join_replace(fmt, holder);
+	free(holder->replace);
 	free(holder);
 }
