@@ -6,7 +6,7 @@
 #    By: aroque <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/26 02:48:28 by aroque            #+#    #+#              #
-#    Updated: 2020/02/02 18:09:55 by aroque           ###   ########.fr        #
+#    Updated: 2020/02/03 21:12:05 by aroque           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,9 +57,11 @@ $(LIB):
 
 clean:
 	$(MAKE) -C $(LIB_DIR) clean
+	$(MAKE) -C $(TEST_DIR) clean
 	$(RM) $(OBJ)
 
 fclean: clean
+	$(MAKE) -C $(TEST_DIR) fclean
 	$(RM) $(NAME) ${LIB}
 
 re: fclean all
