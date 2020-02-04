@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   teste.c                                            :+:      :+:    :+:   */
+/*   test_suite.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aroque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 13:33:39 by aroque            #+#    #+#             */
-/*   Updated: 2020/02/02 18:48:54 by aroque           ###   ########.fr       */
+/*   Updated: 2020/02/03 21:25:20 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,33 +34,31 @@ static void	ft_printf_test(const char *format, ...)
 int main(void)
 {
 	//void *p;
-	//char a;
-	//short b;
+	char a;
 
 	//p = NULL;
-	//a = '4';
-   	//b = 649999;
-	(void) ft_printf_test;
-	//ft_printf_test("Short %hd\n", b);
-	//ft_printf("Short %hhd\n", 649999);
-	//printf("Short %hhd\n", 649999);
+	a = '4';
+	//(void) ft_printf_test;
 	//ft_printf_test("Pointer %p\n", p);
 	//ft_printf_test("Pointer %.p\n", p);
-	//ft_printf_test("Pointer %p\n", &a);
-	//ft_printf_test("Pointer %.3p\n", &a);
-	//ft_printf_test("%5d\n", 231);
-	//ft_printf_test("%-5d\n", 231);
-	//ft_printf_test("%4.3d\n", 29);
-	//ft_printf_test("%4.3d\n", 2890);
-	//ft_printf_test("%s\n", "canino");
-	//ft_printf_test("%8.3s\n", "canino");
-	//ft_printf_test("%-8.3s\n", "canino");
-	//ft_printf_test("%8.s\n", "string");
-	//ft_printf_test("%8.1s\n", "string");
-	//ft_printf_test("Teste %#00*.*d, esse é o teste %s\n", 10, 5, 42, "legal");
-	//ft_printf("Teste %#00*.*d, esse é o teste %s\n", 10, 5, 42, "legal");
-	//ft_printf_test("Teste %0%\n");
-	//ft_printf_test("Numero decimal: %d\n", 1);
+	ft_printf_test("Pointer %p\n", &a);
+	ft_printf_test("Pointer %.3p\n", &a);
+	ft_printf_test("%5d\n", 231);
+	ft_printf_test("%-5d\n", 231);
+	ft_printf_test("%4.3d\n", 29);
+	ft_printf_test("%4.3d\n", 2890);
+	ft_printf_test("%s\n", "canino");
+	ft_printf_test("%8.3s\n", "canino");
+	ft_printf_test("%-8.3s\n", "canino");
+	ft_printf_test("%8.s\n", "string");
+	ft_printf_test("%8.1s\n", "string");
+	ft_printf_test("Teste %#00*.*d, esse é o teste %s\n", 10, 5, 42, "legal");
+	ft_printf("Teste %#00*.*d, esse é o teste %s\n", 10, 5, 42, "legal");
+	ft_printf_test("Teste %0%\n");
+	ft_printf_test("Numero decimal: %d\n", 1);
+	ft_printf_test("%.03s\n", NULL);
+	ft_printf_test("%3.1s\n", NULL);
+	ft_printf_test("%9.1s\n", NULL);
 	//ft_printf_test("Numero decimal: %d\n", 42);
 	//ft_printf_test("Numero hexadecimal: %x %%\n", 42);
 	//ft_printf_test("Test - No Args\n");

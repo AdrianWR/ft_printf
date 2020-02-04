@@ -6,7 +6,7 @@
 /*   By: aroque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 22:03:20 by aroque            #+#    #+#             */
-/*   Updated: 2020/02/03 21:19:20 by aroque           ###   ########.fr       */
+/*   Updated: 2020/02/03 23:18:50 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,13 @@ void	ft_replace_conversion(t_holder *h, va_list args)
 	else if (h->conversion == 'X')
 		h->replace = ft_itoa_base((va_arg(args, int)), HEX_BASE_U);
 	else if (h->conversion == 's')
-		h->replace = ft_handle_s(va_arg(args, char *));
+		h->replace = ft_handle_s(h, args);
 	else if (h->conversion == 'c')
 		h->replace = ft_chardup(va_arg(args, int));
 	else if (h->conversion == 'p')
 		h->replace = ft_pointerdup(va_arg(args, void *));
 	else if (h->conversion == '%')
-		h->replace = ft_chardup('%');
+		h->replace = ft_handle_pct();
 	else
 		h->replace = ft_strdup("");
 	h->len = ft_strlen(h->replace);
@@ -115,14 +115,6 @@ void	ft_replace_precision(t_holder *h)
 			free(h->replace);
 			h->replace = ft_padding_left(src, '0', h->precision);
 		}
-		else if (h->conversion == 's')
-		{
-			src = ft_strdup(h->replace);
-			free(h->replace);
-			if (!(h->replace = malloc((h->precision + 1) * sizeof(char))))
-				return ;
-			ft_strlcpy(h->replace, src, h->precision + 1);
-		}
 		else if (h->conversion == 'p' && h->precision == 0)
 		{
 			free(h->replace);
@@ -131,4 +123,3 @@ void	ft_replace_precision(t_holder *h)
 	}
 	free(src);
 }
-//ft_replace_flags();

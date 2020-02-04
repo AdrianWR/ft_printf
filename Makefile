@@ -6,7 +6,7 @@
 #    By: aroque <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/26 02:48:28 by aroque            #+#    #+#              #
-#    Updated: 2020/02/03 21:12:05 by aroque           ###   ########.fr        #
+#    Updated: 2020/02/03 23:24:48 by aroque           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,9 @@ SRC			=	${SRC_DIR}/ft_printf.c			\
 				${SRC_DIR}/ft_itoa_ubase.c		\
 				${SRC_DIR}/ft_process.c			\
 				${SRC_DIR}/ft_replace.c			\
-				${SRC_DIR}/ft_exceptions.c		\
+				${SRC_DIR}/ft_handle_pct.c		\
+				${SRC_DIR}/ft_handle_s.c		\
+				${SRC_DIR}/ft_handle_d.c		\
 				${SRC_DIR}/ft_pointerdup.c
 
 OBJ_DIR		=	./build
