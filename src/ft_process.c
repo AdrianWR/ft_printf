@@ -30,8 +30,6 @@ void	ft_pre_output(t_format *fmt)
 static void	ft_holder_replace(t_holder *holder, va_list args)
 {
 	ft_replace_conversion(holder, args);
-	//ft_replace_precision(holder);
-	//ft_replace_width(holder);
 }
 
 static void	ft_join_replace(t_format *fmt, t_holder *holder)

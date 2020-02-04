@@ -36,7 +36,7 @@ static int		ft_base_error(const char *base)
 	return (0);
 }
 
-static size_t	ft_digit_counter(long long int n, int base_len)
+static size_t	ft_digit_counter(int n, int base_len)
 {
 	if (!(n / base_len))
 		return (1);
@@ -44,12 +44,12 @@ static size_t	ft_digit_counter(long long int n, int base_len)
 		return (ft_digit_counter(n / base_len, base_len) + 1);
 }
 
-size_t	ft_abs(long long int n)
+size_t	ft_abs(int n)
 {
 	if (n < 0)
-		return (-(long long unsigned int)n);
+		return (-(unsigned int)n);
 	else
-		return ((long long unsigned int)n);
+		return ((unsigned int)n);
 }
 
 /*
@@ -59,7 +59,7 @@ size_t	ft_abs(long long int n)
 ** For example, the decimal base would be "0123456789".
 */
 
-char			*ft_itoa_base(long long int n, const char *base)
+char			*ft_itoa_base(int n, const char *base)
 {
 	char	*s;
 	size_t	len;

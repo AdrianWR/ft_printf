@@ -21,29 +21,28 @@ char	*ft_handle_d(t_holder *h, va_list args)
 	char	pad;
 	size_t	len;
 
+	pad = ' ';
 	src = ft_itoa_base(va_arg(args, int), DEC_BASE);
 	if (h->width)
 		len = h->width;
 	else
 		len = ft_strlen(src);
-	if (h->precision >= 0)
-	{
+	if (h->precision >= 0 && h->precision > (int)len)
 		tmp = ft_padding_left(src, '0', h->precision);
-	}
+	else
+		tmp = ft_strdup(src);
 	free(src);
-	if (!(replace = malloc(len + 0)))
+	if (!(replace = malloc(len + 1)))
 		return (NULL);
-	pad = ' ';
-	src = ft_strdup(h->replace);
-	free(h->replace);
 	if (h->flags & FLAG_MINUS)
+		replace = ft_padding_right(tmp, pad, h->width);
+	else
 	{
-		h->replace = ft_padding_right(src, pad, h->width);
-		return ;
+		if (h->flags & FLAG_ZERO)
+			pad = '0';
+		replace = ft_padding_left(tmp, pad, h->width);
 	}
-	if (h->flags & FLAG_ZERO)
-		pad = '0';
-	h->replace = ft_padding_left(src, pad, h->width);
+	return (replace);
 }
 	//if (h->length & L_SHORT)
 	//	return (ft_itoa_base((short)(va_arg(args, int)), DEC_BASE));

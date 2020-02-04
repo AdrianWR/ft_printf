@@ -85,41 +85,41 @@ char	*ft_padding_right(char *src, char pad, int width)
 	return (dest);
 }
 
-void	ft_replace_width(t_holder *h)
-{
-	char	*src;
-	char	pad;
-
-	pad = ' ';
-	src = ft_strdup(h->replace);
-	free(h->replace);
-	if (h->flags & FLAG_MINUS)
-	{
-		h->replace = ft_padding_right(src, pad, h->width);
-		return ;
-	}
-	if (h->flags & FLAG_ZERO)
-		pad = '0';
-	h->replace = ft_padding_left(src, pad, h->width);
-}
-
-void	ft_replace_precision(t_holder *h)
-{
-	char *src;
-
-	src = ft_strdup(h->replace);
-	if (h->precision >= 0)
-	{
-		if (ft_memchr("diouxX", h->conversion, 6))
-		{
-			free(h->replace);
-			h->replace = ft_padding_left(src, '0', h->precision);
-		}
-		else if (h->conversion == 'p' && h->precision == 0)
-		{
-			free(h->replace);
-			h->replace = ft_strdup("0x");
-		}
-	}
-	free(src);
-}
+//void	ft_replace_width(t_holder *h)
+//{
+//	char	*src;
+//	char	pad;
+//
+//	pad = ' ';
+//	src = ft_strdup(h->replace);
+//	free(h->replace);
+//	if (h->flags & FLAG_MINUS)
+//	{
+//		h->replace = ft_padding_right(src, pad, h->width);
+//		return ;
+//	}
+//	if (h->flags & FLAG_ZERO)
+//		pad = '0';
+//	h->replace = ft_padding_left(src, pad, h->width);
+//}
+//
+//void	ft_replace_precision(t_holder *h)
+//{
+//	char *src;
+//
+//	src = ft_strdup(h->replace);
+//	if (h->precision >= 0)
+//	{
+//		if (ft_memchr("diouxX", h->conversion, 6))
+//		{
+//			free(h->replace);
+//			h->replace = ft_padding_left(src, '0', h->precision);
+//		}
+//		else if (h->conversion == 'p' && h->precision == 0)
+//		{
+//			free(h->replace);
+//			h->replace = ft_strdup("0x");
+//		}
+//	}
+//	free(src);
+//}
