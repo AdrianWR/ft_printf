@@ -6,7 +6,7 @@
 /*   By: aroque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 22:03:20 by aroque            #+#    #+#             */
-/*   Updated: 2020/02/02 18:29:36 by aroque           ###   ########.fr       */
+/*   Updated: 2020/02/03 21:19:20 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ char	*ft_padding_left(char *src, char pad, int width)
 	ft_memset(dest, pad, width - len);
 	dest[width - len] = '\0';
 	ft_strlcat(dest, src, width + 1);
-	free(src);
 	return (dest);
 }
 
@@ -83,7 +82,6 @@ char	*ft_padding_right(char *src, char pad, int width)
 	ft_strlcpy(dest, src, len + 1);
 	ft_memset(dest + len, pad, width - len);
 	dest[width] = '\0';
-	free(src);
 	return (dest);
 }
 
