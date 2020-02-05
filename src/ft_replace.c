@@ -6,7 +6,7 @@
 /*   By: aroque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 22:03:20 by aroque            #+#    #+#             */
-/*   Updated: 2020/02/03 23:18:50 by aroque           ###   ########.fr       */
+/*   Updated: 2020/02/05 15:45:58 by adrian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,33 +14,23 @@
 #include "libft.h"
 #include <stdio.h>
 
-char	*ft_chardup(int c)
-{
-	char *dup;
-
-	if(!(dup = malloc(sizeof(char))))
-		return (NULL);
-	dup[0] = c;
-	dup[1] = '\0';
-	return (dup);
-}
 
 void	ft_replace_conversion(t_holder *h, va_list args)
 {
 	if (h->conversion == 'd' || h->conversion == 'i')
 		h->replace = ft_handle_d(h, args);
 	else if (h->conversion == 'u')
-		h->replace = ft_itoa_ubase((va_arg(args, unsigned int)), DEC_BASE);
+		h->replace = ft_handle_uxX(h, args, DEC_BASE);
 	else if (h->conversion == 'x')
-		h->replace = ft_itoa_base((va_arg(args, int)), HEX_BASE_L);
+		h->replace = ft_handle_uxX(h, args, HEX_BASE_L);
 	else if (h->conversion == 'X')
-		h->replace = ft_itoa_base((va_arg(args, int)), HEX_BASE_U);
+		h->replace = ft_handle_uxX(h, args, HEX_BASE_U);
 	else if (h->conversion == 's')
 		h->replace = ft_handle_s(h, args);
 	else if (h->conversion == 'c')
-		h->replace = ft_chardup(va_arg(args, int));
+		h->replace = ft_handle_c(h, args);
 	else if (h->conversion == 'p')
-		h->replace = ft_pointerdup(va_arg(args, void *));
+		h->replace = ft_handle_p(h, args);
 	else if (h->conversion == '%')
 		h->replace = ft_handle_pct();
 	else

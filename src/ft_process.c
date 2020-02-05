@@ -27,11 +27,6 @@ void	ft_pre_output(t_format *fmt)
 	free(substr);
 }
 
-static void	ft_holder_replace(t_holder *holder, va_list args)
-{
-	ft_replace_conversion(holder, args);
-}
-
 static void	ft_join_replace(t_format *fmt, t_holder *holder)
 {
 	char	*tmp;
@@ -49,7 +44,7 @@ void	ft_process(t_format *fmt)
 
 	ft_pre_output(fmt);
 	holder = ft_parser(fmt);
-	ft_holder_replace(holder, fmt->args);
+	ft_replace_conversion(holder, fmt->args);
 	ft_join_replace(fmt, holder);
 	free(holder->replace);
 	free(holder);

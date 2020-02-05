@@ -6,7 +6,7 @@
 /*   By: aroque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 13:33:39 by aroque            #+#    #+#             */
-/*   Updated: 2020/02/03 21:25:20 by aroque           ###   ########.fr       */
+/*   Updated: 2020/02/05 16:40:46 by adrian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,24 +34,27 @@ static void	ft_printf_test(const char *format, ...)
 int main(void)
 {
 	//void *p;
-	char a;
+	//char a;
 
 	//p = NULL;
-	a = '4';
-	//(void) ft_printf_test;
+	//a = '4';
+	(void) ft_printf_test;
+	//printf("%s", ft_itoa_ubase(UINT_MAX, DEC_BASE));
+	printf("%c\n", 0);
+	ft_printf("%c\n", 0);
 	//ft_printf_test("Pointer %p\n", p);
 	//ft_printf_test("Pointer %.p\n", p);
-	ft_printf_test("Pointer %p\n", &a);
-	ft_printf_test("Pointer %.3p\n", &a);
-	ft_printf_test("Numero decimal: %d\n", 1);
-	ft_printf_test("Numero decimal: %d\n", -12);
-	ft_printf_test("%5d\n", 231);
-	ft_printf_test("%-5d\n", 231);
-	ft_printf_test("%4.3d\n", 29);
-	ft_printf_test("%4.3d\n", 2890);
-	ft_printf_test("Teste %#00*.*d, esse é o teste %s\n", 10, 5, 42, "legal");
-	ft_printf("Teste %#00*.*d, esse é o teste %s\n", 10, 5, 42, "legal");
-	ft_printf_test("Teste %0%\n");
+	//ft_printf_test("Pointer %p\n", &a);
+	//ft_printf_test("Pointer %.3p\n", &a);
+	//ft_printf_test("Numero decimal: %d\n", 1);
+	//ft_printf_test("Numero decimal: %d\n", -12);
+	//ft_printf_test("%5d\n", 231);
+	//ft_printf_test("%-5d\n", 231);
+	//ft_printf("%3.7i", 3267);
+	//ft_printf_test("%4.3d\n", 2890);
+	//ft_printf_test("Teste %#00*.*d, esse é o teste %s\n", 10, 5, 42, "legal");
+	//ft_printf("Teste %#00*.*d, esse é o teste %s\n", 10, 5, 42, "legal");
+	//ft_printf_test("Teste %0%\n");
 	//ft_printf_test("%s\n", "string");
 	//ft_printf_test("%8.3s\n", "string");
 	//ft_printf_test("%-8.3s\n", "string");
@@ -96,5 +99,5 @@ int main(void)
 	//printf("Teste: %+10d\n", 1);
 	//printf("Teste: %-+10d\n", 1);
 	//ft_printf("%-32s\n", "abc");
-	ft_printf("%-32s\n", NULL);
+	//ft_printf("%-32s\n", NULL);
 }

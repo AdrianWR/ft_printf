@@ -6,7 +6,7 @@
 /*   By: aroque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 02:47:31 by aroque            #+#    #+#             */
-/*   Updated: 2020/02/03 23:18:16 by aroque           ###   ########.fr       */
+/*   Updated: 2020/02/05 15:52:04 by adrian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 # define HEX_BASE_L	"0123456789abcdef"
 # define HEX_BASE_U	"0123456789ABCDEF"
 
+# define CHAR_NULL	"\x00"
 # define STR_NULL	"(null)"
 # define STR_EMPTY	""
 
@@ -70,10 +71,12 @@ void		ft_replace_conversion(t_holder *h, va_list args);
 void		ft_replace_width(t_holder *h);
 void		ft_replace_precision(t_holder *h);
 char		*ft_itoa_base(int n, const char *base);
-char		*ft_itoa_ubase(long long unsigned int n, const char *base);
-char		*ft_pointerdup(void *p);
+char		*ft_itoa_ubase(unsigned int n, const char *base);
+char		*ft_handle_p(t_holder *h, va_list args);
 char		*ft_handle_d(t_holder *h, va_list args);
+char		*ft_handle_uxX(t_holder *h, va_list args, char *base);
 char		*ft_handle_s(t_holder *h, va_list args);
+char		*ft_handle_c(t_holder *h, va_list args);
 char		*ft_handle_pct(void);
 char		*ft_padding_left(char *src, char pad, int width);
 char		*ft_padding_right(char *src, char pad, int width);

@@ -6,7 +6,7 @@
 #    By: aroque <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/26 02:48:28 by aroque            #+#    #+#              #
-#    Updated: 2020/02/03 23:24:48 by aroque           ###   ########.fr        #
+#    Updated: 2020/02/05 15:45:29 by adrian           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,8 +33,10 @@ SRC			=	${SRC_DIR}/ft_printf.c			\
 				${SRC_DIR}/ft_replace.c			\
 				${SRC_DIR}/ft_handle_pct.c		\
 				${SRC_DIR}/ft_handle_s.c		\
+				${SRC_DIR}/ft_handle_c.c		\
 				${SRC_DIR}/ft_handle_d.c		\
-				${SRC_DIR}/ft_pointerdup.c
+				${SRC_DIR}/ft_handle_u.c		\
+				${SRC_DIR}/ft_handle_p.c
 
 OBJ_DIR		=	./build
 OBJ			=	$(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC))
