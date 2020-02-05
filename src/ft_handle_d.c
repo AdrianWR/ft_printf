@@ -13,35 +13,70 @@
 #include "libft.h"
 #include "ft_printf.h"
 
+static char	*ft_handle_precision(int d, t_holder *h)
+{
+	int		len;
+	char	*src;
+	char	*dest;
+
+	if (d == 0 && h->precision >= 0)
+		src = ft_strdup(STR_EMPTY);
+	else
+		src = ft_itoa_base(d, DEC_BASE);
+	len = (int)ft_strlen(src);
+	if (h->precision >= 0 && h->precision > len)
+	{
+		if (src[0] == '-')
+		{
+			dest = ft_padding_left(src, '0', h->precision + 1);
+			dest[0] = '-';
+			dest[h->precision - len + 1] = '0';
+		}
+		else
+			dest = ft_padding_left(src, '0', h->precision);
+	}
+	else
+		dest = ft_strdup(src);
+	free(src);
+	return (dest);
+}
+
+static char	*ft_handle_width(char *src, t_holder *h)
+{
+	char	pad;
+	char 	*dest;
+
+	pad = ' ';
+	if (!(dest = malloc(h->width + 1)))
+		return (NULL);
+	if (h->flags & FLAG_MINUS)
+		dest = ft_padding_right(src, pad, h->width);
+	else
+	{
+		if (h->flags & FLAG_ZERO && h->precision < 0)
+			pad = '0';
+		dest = ft_padding_left(src, pad, h->width);
+		if (src[0] == '-' && pad == '0')
+		{
+			dest[0] = '-';
+			dest[h->width - ft_strlen(src)] = pad;
+		}
+	}
+	//free(src);
+	return (dest);
+}
+
 char	*ft_handle_d(t_holder *h, va_list args)
 {
 	char	*replace;
-	char	*src;
 	char	*tmp;
-	char	pad;
-	size_t	len;
 
-	pad = ' ';
-	src = ft_itoa_base(va_arg(args, int), DEC_BASE);
-	if (h->width)
-		len = h->width;
+	tmp = ft_handle_precision(va_arg(args, int), h);
+	if (h->width > (int)ft_strlen(tmp))
+		replace = ft_handle_width(tmp, h);
 	else
-		len = ft_strlen(src);
-	if (h->precision >= 0 && h->precision > (int)len)
-		tmp = ft_padding_left(src, '0', h->precision);
-	else
-		tmp = ft_strdup(src);
-	free(src);
-	if (!(replace = malloc(len + 1)))
-		return (NULL);
-	if (h->flags & FLAG_MINUS)
-		replace = ft_padding_right(tmp, pad, h->width);
-	else
-	{
-		if (h->flags & FLAG_ZERO)
-			pad = '0';
-		replace = ft_padding_left(tmp, pad, h->width);
-	}
+		replace = ft_strdup(tmp);
+	free(tmp);
 	return (replace);
 }
 	//if (h->length & L_SHORT)
