@@ -6,7 +6,7 @@
 /*   By: aroque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 02:47:31 by aroque            #+#    #+#             */
-/*   Updated: 2020/02/05 15:52:04 by adrian           ###   ########.fr       */
+/*   Updated: 2020/02/06 16:48:36 by adrian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,12 @@ typedef struct	s_format
 	va_list		args;
 	size_t		start;
 	size_t		pos;
-	size_t		len;
+	int			len;
 }				t_format;
 
 int			ft_printf(const char *format, ...);
 int			ft_vprintf(const char *format, va_list ap);
+int			ft_vdprintf(int fd, const char *format, va_list ap);
 void		ft_parser_flags(t_format *fmt, t_holder *holder);
 void		ft_parser_width(t_format *fmt, t_holder *holder);
 void		ft_parser_precision(t_format *fmt, t_holder *holder);

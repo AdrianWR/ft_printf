@@ -6,7 +6,7 @@
 /*   By: adrian <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 15:15:50 by adrian            #+#    #+#             */
-/*   Updated: 2020/02/05 15:34:13 by adrian           ###   ########.fr       */
+/*   Updated: 2020/02/06 16:26:07 by adrian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ static char	*ft_handle_width(char *src, t_holder *h)
 	char 	*dest;
 
 	pad = ' ';
-	if (!(dest = malloc(h->width + 1)))
-		return (NULL);
+	if (h->width <= (int)ft_strlen(src))
+		return (ft_strdup(src));
 	if (h->flags & FLAG_MINUS)
 		dest = ft_padding_right(src, pad, h->width);
 	else
@@ -48,7 +48,6 @@ static char	*ft_handle_width(char *src, t_holder *h)
 			pad = '0';
 		dest = ft_padding_left(src, pad, h->width);
 	}
-	//free(src);
 	return (dest);
 }
 
@@ -58,10 +57,7 @@ char	*ft_handle_uxX(t_holder *h, va_list args, char *base)
 	char	*tmp;
 
 	tmp = ft_handle_precision(va_arg(args, unsigned int), h, base);
-	if (h->width > (int)ft_strlen(tmp))
-		replace = ft_handle_width(tmp, h);
-	else
-		replace = ft_strdup(tmp);
+	replace = ft_handle_width(tmp, h);
 	free(tmp);
 	return (replace);
 }

@@ -6,7 +6,7 @@
 /*   By: aroque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 02:46:09 by aroque            #+#    #+#             */
-/*   Updated: 2020/02/02 18:48:23 by aroque           ###   ########.fr       */
+/*   Updated: 2020/02/06 15:42:21 by adrian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,28 +36,36 @@ t_format	*ft_format_initializer(const char *format, va_list args)
 	fmt->output = ft_strdup("");
 	fmt->start = 0;
 	fmt->pos = 0;
-	fmt->len = ft_strlen(fmt->input);
+	fmt->len = 0;
 	va_copy(fmt->args, args);
 	return (fmt);
 }
 
 int	ft_vprintf(const char *format, va_list args)
 {
+	return (ft_vdprintf(1, format, args));
+}
+
+int	ft_vdprintf(int fd, const char *format, va_list args)
+{
+	size_t		len_input;
 	int			len;
 	t_format	*fmt;
 
 	fmt = ft_format_initializer(format, args);
-	while (fmt->pos <= fmt->len)
+	len_input = ft_strlen(fmt->input);
+	while (fmt->pos <= len_input)
 	{
-		if (fmt->input[fmt->pos] == '%')
+		if (fmt->input[fmt->pos] == '%' || !fmt->input[fmt->pos])
 		{
-			ft_process(fmt);
+			ft_pre_output(fmt);
+			if (fmt->input[fmt->pos] == '%')
+				ft_process(fmt);
 		}
 		fmt->pos++;
 	}
-	ft_pre_output(fmt);
-	ft_putstr(fmt->output);
-	len = ft_strlen(fmt->output);
+	len = fmt->len;
+	write(fd, fmt->output, len);
 	free(fmt->output);
 	free(fmt);
 	return (len);

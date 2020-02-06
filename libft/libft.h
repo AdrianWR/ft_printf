@@ -6,7 +6,7 @@
 /*   By: aroque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 11:24:25 by aroque            #+#    #+#             */
-/*   Updated: 2020/01/27 18:29:18 by aroque           ###   ########.fr       */
+/*   Updated: 2020/02/06 15:42:06 by adrian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define LIBFT_H
 
 # include <stdlib.h>
+# include <unistd.h>
 
 /*
 **	----------------------
@@ -96,6 +97,7 @@ t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 
 size_t	ft_putchar(unsigned char c);
 size_t	ft_putstr(const char *str);
+size_t	ft_putnstr(const char *str, size_t n);
 size_t	ft_putnbr(int n);
 
 /*

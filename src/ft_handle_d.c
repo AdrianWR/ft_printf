@@ -6,12 +6,17 @@
 /*   By: aroque <aroque@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 23:23:37 by aroque            #+#    #+#             */
-/*   Updated: 2020/02/04 00:12:43 by aroque           ###   ########.fr       */
+/*   Updated: 2020/02/06 16:22:16 by adrian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "ft_printf.h"
+
+//static char	*ft_handle_plus(char *src, t_holder *h)
+//{
+//
+//}
 
 static char	*ft_handle_precision(int d, t_holder *h)
 {
@@ -47,8 +52,8 @@ static char	*ft_handle_width(char *src, t_holder *h)
 	char 	*dest;
 
 	pad = ' ';
-	if (!(dest = malloc(h->width + 1)))
-		return (NULL);
+	if (h->width <= (int)ft_strlen(src))
+		return (ft_strdup(src));
 	if (h->flags & FLAG_MINUS)
 		dest = ft_padding_right(src, pad, h->width);
 	else
@@ -62,7 +67,6 @@ static char	*ft_handle_width(char *src, t_holder *h)
 			dest[h->width - ft_strlen(src)] = pad;
 		}
 	}
-	//free(src);
 	return (dest);
 }
 
@@ -72,10 +76,7 @@ char	*ft_handle_d(t_holder *h, va_list args)
 	char	*tmp;
 
 	tmp = ft_handle_precision(va_arg(args, int), h);
-	if (h->width > (int)ft_strlen(tmp))
-		replace = ft_handle_width(tmp, h);
-	else
-		replace = ft_strdup(tmp);
+	replace = ft_handle_width(tmp, h);
 	free(tmp);
 	return (replace);
 }

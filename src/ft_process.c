@@ -6,7 +6,7 @@
 /*   By: aroque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 16:13:48 by aroque            #+#    #+#             */
-/*   Updated: 2020/02/03 23:19:53 by aroque           ###   ########.fr       */
+/*   Updated: 2020/02/06 15:16:09 by adrian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	ft_pre_output(t_format *fmt)
 	substr = ft_substr(fmt->input, fmt->start, fmt->pos - fmt->start);
 	free(fmt->output);
 	fmt->output = ft_strjoin(tmp, substr);
+	fmt->len += ft_strlen(substr);
 	free(tmp);
 	free(substr);
 }
@@ -42,10 +43,11 @@ void	ft_process(t_format *fmt)
 {
 	t_holder	*holder;
 
-	ft_pre_output(fmt);
+	//ft_pre_output(fmt);
 	holder = ft_parser(fmt);
 	ft_replace_conversion(holder, fmt->args);
 	ft_join_replace(fmt, holder);
+	fmt->len += ft_strlen(holder->replace);
 	free(holder->replace);
 	free(holder);
 }

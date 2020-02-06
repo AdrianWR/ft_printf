@@ -6,7 +6,7 @@
 /*   By: aroque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 22:03:20 by aroque            #+#    #+#             */
-/*   Updated: 2020/02/05 15:45:58 by adrian           ###   ########.fr       */
+/*   Updated: 2020/02/06 16:47:41 by adrian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ char	*ft_padding_left(char *src, char pad, int width)
 	size_t len;
 
 	len = ft_strlen(src);
-	if (!(dest = malloc(ft_abs(width) + 1)))
+	if (!(dest = malloc(width + 1)))
 		return (NULL);
-	if (ft_abs(width) < len || !width)
+	if (width < (int)len || !width)
 		return (src);
 	ft_memset(dest, pad, width - len);
 	dest[width - len] = '\0';
@@ -65,9 +65,9 @@ char	*ft_padding_right(char *src, char pad, int width)
 	size_t	len;
 
 	len = ft_strlen(src);
-	if (!(dest = malloc(ft_abs(width) + 1)))
+	if (!(dest = malloc(width + 1)))
 		return (NULL);
-	if (ft_abs(width) < len || !width)
+	if (width < (int)len || !width)
 		return (src);
 	ft_strlcpy(dest, src, len + 1);
 	ft_memset(dest + len, pad, width - len);
