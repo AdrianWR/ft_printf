@@ -6,7 +6,7 @@
 /*   By: aroque <aroque@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 23:23:37 by aroque            #+#    #+#             */
-/*   Updated: 2020/02/06 16:22:16 by adrian           ###   ########.fr       */
+/*   Updated: 2020/02/06 22:43:11 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ char	*ft_handle_d(t_holder *h, va_list args)
 	tmp = ft_handle_precision(va_arg(args, int), h);
 	replace = ft_handle_width(tmp, h);
 	free(tmp);
+	h->len = ft_strlen(replace);
 	return (replace);
 }
 	//if (h->length & L_SHORT)

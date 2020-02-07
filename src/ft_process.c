@@ -6,7 +6,7 @@
 /*   By: aroque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 16:13:48 by aroque            #+#    #+#             */
-/*   Updated: 2020/02/06 15:16:09 by adrian           ###   ########.fr       */
+/*   Updated: 2020/02/06 22:26:41 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,40 +14,43 @@
 #include "ft_printf.h"
 #include <stdio.h>
 
-void	ft_pre_output(t_format *fmt)
+void	ft_pre_output(int fd, t_format *fmt)
 {
-	char	*tmp;
+	//char	*tmp;
 	char	*substr;
 
-	tmp = ft_strdup(fmt->output);
+	//tmp = ft_strdup(fmt->output);
 	substr = ft_substr(fmt->input, fmt->start, fmt->pos - fmt->start);
-	free(fmt->output);
-	fmt->output = ft_strjoin(tmp, substr);
-	fmt->len += ft_strlen(substr);
-	free(tmp);
+	//free(fmt->output);
+	//fmt->output = ft_strjoin(tmp, substr);
+	//fmt->len += ft_strlen(substr);
+	//free(tmp);
+	fmt->len += write(fd, substr, fmt->pos - fmt->start);
 	free(substr);
 }
 
-static void	ft_join_replace(t_format *fmt, t_holder *holder)
-{
-	char	*tmp;
+//static void	ft_join_replace(t_format *fmt, t_holder *holder)
+//{
+//	char	*tmp;
+//
+//	tmp = ft_strdup(fmt->output);
+//	free(fmt->output);
+//	fmt->output	= ft_strjoin(tmp, holder->replace);
+//	fmt->start = fmt->pos + 1;
+//	free(tmp);
+//}
 
-	tmp = ft_strdup(fmt->output);
-	free(fmt->output);
-	fmt->output	= ft_strjoin(tmp, holder->replace);
-	fmt->start = fmt->pos + 1;
-	free(tmp);
-}
-
-void	ft_process(t_format *fmt)
+void	ft_process(int fd, t_format *fmt)
 {
 	t_holder	*holder;
 
 	//ft_pre_output(fmt);
 	holder = ft_parser(fmt);
 	ft_replace_conversion(holder, fmt->args);
-	ft_join_replace(fmt, holder);
-	fmt->len += ft_strlen(holder->replace);
+	//ft_join_replace(fmt, holder);
+	//fmt->len += ft_strlen(holder->replace);
+	fmt->start = fmt->pos + 1;
+	fmt->len += write(fd, holder->replace, holder->len);
 	free(holder->replace);
 	free(holder);
 }

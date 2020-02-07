@@ -6,7 +6,7 @@
 /*   By: aroque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 02:47:31 by aroque            #+#    #+#             */
-/*   Updated: 2020/02/06 16:48:36 by adrian           ###   ########.fr       */
+/*   Updated: 2020/02/06 22:19:44 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@
 # define CHAR_NULL	"\x00"
 # define STR_NULL	"(null)"
 # define STR_EMPTY	""
+# define PTR_START	"0x"
 
 typedef struct	s_holder
 {
@@ -51,7 +52,6 @@ typedef struct	s_holder
 typedef struct	s_format
 {
 	char		*input;
-	char		*output;
 	va_list		args;
 	size_t		start;
 	size_t		pos;
@@ -66,19 +66,17 @@ void		ft_parser_width(t_format *fmt, t_holder *holder);
 void		ft_parser_precision(t_format *fmt, t_holder *holder);
 void		ft_parser_length(t_format *fmt, t_holder *holder);
 void		ft_parser_conversion(t_format *fmt, t_holder *holder);
-void		ft_pre_output(t_format *fmt);
-void		ft_process(t_format *fmt);
+void		ft_pre_output(int fd, t_format *fmt);
+void		ft_process(int fd, t_format *fmt);
 void		ft_replace_conversion(t_holder *h, va_list args);
-void		ft_replace_width(t_holder *h);
-void		ft_replace_precision(t_holder *h);
 char		*ft_itoa_base(int n, const char *base);
-char		*ft_itoa_ubase(unsigned int n, const char *base);
+char		*ft_itoa_ubase(long unsigned int n, const char *base);
 char		*ft_handle_p(t_holder *h, va_list args);
 char		*ft_handle_d(t_holder *h, va_list args);
 char		*ft_handle_uxX(t_holder *h, va_list args, char *base);
 char		*ft_handle_s(t_holder *h, va_list args);
 char		*ft_handle_c(t_holder *h, va_list args);
-char		*ft_handle_pct(void);
+char		*ft_handle_pct(t_holder *h);
 char		*ft_padding_left(char *src, char pad, int width);
 char		*ft_padding_right(char *src, char pad, int width);
 size_t		ft_abs(int n);

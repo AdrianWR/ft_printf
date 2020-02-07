@@ -6,14 +6,14 @@
 #    By: aroque <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/26 02:48:28 by aroque            #+#    #+#              #
-#    Updated: 2020/01/27 17:17:24 by aroque           ###   ########.fr        #
+#    Updated: 2020/02/06 22:00:36 by aroque           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	test_ft_printf
 
 CC			=	gcc
-CC_FLAGS	=	-Wall	\
+CC_FLAGS	=	#-Wall	\
 				-Wextra	\
 				-Werror	\
 				-g

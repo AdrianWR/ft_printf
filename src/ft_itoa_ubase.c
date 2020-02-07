@@ -6,7 +6,7 @@
 /*   By: aroque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/01 02:17:06 by aroque            #+#    #+#             */
-/*   Updated: 2020/02/05 15:20:57 by adrian           ###   ########.fr       */
+/*   Updated: 2020/02/06 21:44:08 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static int		ft_base_error(const char *base)
 	return (0);
 }
 
-static size_t	ft_digit_counter(unsigned int n, int base_len)
+static size_t	ft_digit_counter(long unsigned int n, int base_len)
 {
 	if (!(n / base_len))
 		return (1);
@@ -51,7 +51,7 @@ static size_t	ft_digit_counter(unsigned int n, int base_len)
 ** For example, the decimal base would be "0123456789".
 */
 
-char			*ft_itoa_ubase(unsigned int n, const char *base)
+char			*ft_itoa_ubase(long unsigned int n, const char *base)
 {
 	char	*s;
 	size_t	len;

@@ -6,7 +6,7 @@
 /*   By: aroque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 02:46:09 by aroque            #+#    #+#             */
-/*   Updated: 2020/02/06 15:42:21 by adrian           ###   ########.fr       */
+/*   Updated: 2020/02/06 22:20:08 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ t_format	*ft_format_initializer(const char *format, va_list args)
 	if(!(fmt = malloc(sizeof(*fmt))))
 		return (NULL);
 	fmt->input = (char *)format;
-	fmt->output = ft_strdup("");
 	fmt->start = 0;
 	fmt->pos = 0;
 	fmt->len = 0;
@@ -58,15 +57,15 @@ int	ft_vdprintf(int fd, const char *format, va_list args)
 	{
 		if (fmt->input[fmt->pos] == '%' || !fmt->input[fmt->pos])
 		{
-			ft_pre_output(fmt);
+			ft_pre_output(fd, fmt);
 			if (fmt->input[fmt->pos] == '%')
-				ft_process(fmt);
+				ft_process(fd, fmt);
 		}
 		fmt->pos++;
 	}
 	len = fmt->len;
-	write(fd, fmt->output, len);
-	free(fmt->output);
+	//write(fd, fmt->output, len);
+	//free(fmt->output);
 	free(fmt);
 	return (len);
 }
