@@ -6,7 +6,7 @@
 /*   By: aroque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 02:47:31 by aroque            #+#    #+#             */
-/*   Updated: 2020/02/06 22:19:44 by aroque           ###   ########.fr       */
+/*   Updated: 2020/02/08 19:24:00 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdarg.h>
 # include <stdlib.h>
+# include <libft.h>
 
 # define PLACEHOLDER_FLAGS			"+-0#"
 # define PLACEHOLDER_CONVERSIONS	"cspdiuxX%"
@@ -33,7 +34,6 @@
 # define HEX_BASE_L	"0123456789abcdef"
 # define HEX_BASE_U	"0123456789ABCDEF"
 
-# define CHAR_NULL	"\x00"
 # define STR_NULL	"(null)"
 # define STR_EMPTY	""
 # define PTR_START	"0x"
@@ -51,10 +51,9 @@ typedef struct	s_holder
 
 typedef struct	s_format
 {
-	char		*input;
+	const char	*input;
 	va_list		args;
-	size_t		start;
-	size_t		pos;
+	int			pos;
 	int			len;
 }				t_format;
 
@@ -66,7 +65,6 @@ void		ft_parser_width(t_format *fmt, t_holder *holder);
 void		ft_parser_precision(t_format *fmt, t_holder *holder);
 void		ft_parser_length(t_format *fmt, t_holder *holder);
 void		ft_parser_conversion(t_format *fmt, t_holder *holder);
-void		ft_pre_output(int fd, t_format *fmt);
 void		ft_process(int fd, t_format *fmt);
 void		ft_replace_conversion(t_holder *h, va_list args);
 char		*ft_itoa_base(int n, const char *base);
@@ -79,7 +77,7 @@ char		*ft_handle_c(t_holder *h, va_list args);
 char		*ft_handle_pct(t_holder *h);
 char		*ft_padding_left(char *src, char pad, int width);
 char		*ft_padding_right(char *src, char pad, int width);
-size_t		ft_abs(int n);
 t_holder	*ft_parser(t_format *fmt);
+t_format	*ft_format_initializer(const char *format, va_list args);
 
 #endif

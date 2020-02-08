@@ -6,13 +6,13 @@
 /*   By: aroque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 11:27:22 by aroque            #+#    #+#             */
-/*   Updated: 2020/01/24 17:57:02 by aroque           ###   ########.fr       */
+/*   Updated: 2020/02/08 17:29:12 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-void	ft_putchar_fd(char c, int fd)
+ssize_t	ft_putchar_fd(char c, int fd)
 {
-	write(fd, &c, 1);
+	return (write(fd, &c, 1));
 }

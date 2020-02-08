@@ -6,7 +6,7 @@
 /*   By: aroque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/01 06:56:48 by aroque            #+#    #+#             */
-/*   Updated: 2020/02/06 20:48:54 by aroque           ###   ########.fr       */
+/*   Updated: 2020/02/07 20:13:17 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,6 @@ char	*ft_handle_s(t_holder *h, va_list args)
 		return (NULL);
 	ft_strlcpy(tmp, src, h->precision + 1);
 	replace = ft_handle_width(h, tmp);
+	h->len = ft_strlen(replace);
 	return (replace);
 }

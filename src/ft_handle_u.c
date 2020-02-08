@@ -6,7 +6,7 @@
 /*   By: adrian <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 15:15:50 by adrian            #+#    #+#             */
-/*   Updated: 2020/02/06 16:26:07 by adrian           ###   ########.fr       */
+/*   Updated: 2020/02/07 20:13:50 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,6 @@ char	*ft_handle_uxX(t_holder *h, va_list args, char *base)
 	tmp = ft_handle_precision(va_arg(args, unsigned int), h, base);
 	replace = ft_handle_width(tmp, h);
 	free(tmp);
+	h->len = ft_strlen(replace);
 	return (replace);
 }

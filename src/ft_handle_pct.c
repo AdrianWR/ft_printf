@@ -6,7 +6,7 @@
 /*   By: aroque <aroque@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 23:09:49 by aroque            #+#    #+#             */
-/*   Updated: 2020/02/06 22:48:57 by aroque           ###   ########.fr       */
+/*   Updated: 2020/02/07 20:16:02 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ char	*ft_handle_pct(t_holder *h)
 	char	*src;
 
 	pad = ' ';
+	if (!h->width)
+		h->width++;
 	if (h->flags & FLAG_MINUS)
 		src = ft_padding_right("%", pad, h->width);
 	else

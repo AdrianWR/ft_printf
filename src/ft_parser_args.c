@@ -6,103 +6,133 @@
 /*   By: aroque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 11:15:20 by aroque            #+#    #+#             */
-/*   Updated: 2020/02/02 15:30:08 by aroque           ###   ########.fr       */
+/*   Updated: 2020/02/08 20:16:08 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "libft.h"
-#include <stdio.h>
 
-void	ft_parser_flags(t_format *fmt, t_holder *holder)
+# define WIDTH 0
+# define PRECISION 1
+
+int	ft_parser_asterisk(char option, t_format *f, t_holder *h)
 {
-	int		i;
-	char	*str;
+	int spec;
 
-	str = ft_strdup(fmt->input);
-	i = fmt->pos + 1;
-	while (ft_strchr(PLACEHOLDER_FLAGS, str[i]))
+	spec = va_arg(f->args, int);
+	if (spec < 0)
 	{
-		if (str[i] == '-')
-			holder->flags |= FLAG_MINUS;
-		else if (str[i] == '0')
-			holder->flags |= FLAG_ZERO;
-		else if (str[i] == '+')
-			holder->flags |= FLAG_PLUS;
-		else if (str[i] == '#')
-			holder->flags |= FLAG_HASH;
-		i++;
-	}
-	fmt->pos = i;
-	free(str);
-}
-
-void	ft_parser_width(t_format *fmt, t_holder *holder)
-{
-	if (fmt->input[fmt->pos] == '*')
-		holder->width = va_arg(fmt->args, int);
-	else
-		holder->width = ft_atoi(&fmt->input[fmt->pos]);
-	while (ft_isdigit(fmt->input[fmt->pos]) || fmt->input[fmt->pos] == '*')
-		fmt->pos++;
-}
-
-void	ft_parser_precision(t_format *fmt, t_holder *holder)
-{
-	if (fmt->input[fmt->pos] == '.')
-	{
-		fmt->pos++;
-		if (fmt->input[fmt->pos] == '*')
-			holder->precision = va_arg(fmt->args, int);
+		if (!option)
+			spec *= -1;
 		else
-			if (!ft_isdigit(fmt->input[fmt->pos]))
-				holder->precision = 0;
-			else
-				holder->precision = ft_atoi(&fmt->input[fmt->pos]);
-		while (ft_isdigit(fmt->input[fmt->pos]) || fmt->input[fmt->pos] == '*')
-			fmt->pos++;
+			spec = -1;
+		h->flags |= FLAG_MINUS;
+	}
+	return (spec);
+}
+
+void	ft_parser_flags(t_format *f, t_holder *holder)
+{
+	if (!f->input[f->pos])
+		return ;
+	while (ft_strchr(PLACEHOLDER_FLAGS, f->input[f->pos]))
+	{
+		if (f->input[f->pos] == '-')
+			holder->flags |= FLAG_MINUS;
+		else if (f->input[f->pos] == '0')
+			holder->flags |= FLAG_ZERO;
+		else if (f->input[f->pos] == '+')
+			holder->flags |= FLAG_PLUS;
+		else if (f->input[f->pos] == '#')
+			holder->flags |= FLAG_HASH;
+		f->pos++;
 	}
 }
 
-void	ft_parser_length(t_format *fmt, t_holder *holder)
+void	ft_parser_width(t_format *f, t_holder *h)
 {
-	if (fmt->input[fmt->pos] == 'h')
+	if (!f->input[f->pos])
+		return ;
+	if (f->input[f->pos] == '*')
+	{
+		h->width = ft_parser_asterisk(WIDTH, f, h);
+		f->pos++;
+	}
+	else
+	{
+		h->width = ft_atoi(f->input + f->pos);
+		while (ft_isdigit(f->input[f->pos]))
+			f->pos++;
+	}
+}
+
+void	ft_parser_precision(t_format *f, t_holder *h)
+{
+	if (!f->input[f->pos])
+		return ;
+	if (f->input[f->pos] == '.')
+	{
+		f->pos++;
+		if (f->input[f->pos] == '*')
+		{
+			h->precision = ft_parser_asterisk(PRECISION, f, h);
+			f->pos++;
+		}
+		else
+		{
+			if (!ft_isdigit(f->input[f->pos]))
+				h->precision = 0;
+			else
+				h->precision = ft_atoi(f->input + f->pos);
+			while (ft_isdigit(f->input[f->pos]))
+				f->pos++;
+		}
+	}
+}
+
+void	ft_parser_length(t_format *f, t_holder *holder)
+{
+	if (!f->input[f->pos])
+		return ;
+	if (f->input[f->pos] == 'h')
 	{
 		holder->length |= L_SHORT;
-		fmt->pos++;
-		if (fmt->input[fmt->pos] == 'h')
+		f->pos++;
+		if (f->input[f->pos] == 'h')
 		{
 			holder->length |= L_CHAR;
-			fmt->pos++;
+			f->pos++;
 		}
 	}
-	else if (fmt->input[fmt->pos] == 'l')
+	else if (f->input[f->pos] == 'l')
 	{
 		holder->length |= L_LONG;
-		fmt->pos++;
-		if (fmt->input[fmt->pos] == 'l')
+		f->pos++;
+		if (f->input[f->pos] == 'l')
 		{
 			holder->length |= L_LLONG;
-			fmt->pos++;
+			f->pos++;
 		}
 	}
 }
 
-void	ft_parser_conversion(t_format *fmt, t_holder *holder)
+void	ft_parser_conversion(t_format *f, t_holder *holder)
 {
 	int		i;
 	int		len;
 	char	*conversions;
 
+	if (!f->input[f->pos])
+		return ;
 	i = 0;
 	len = ft_strlen(PLACEHOLDER_CONVERSIONS);
 	conversions = ft_strdup(PLACEHOLDER_CONVERSIONS);
 	while (i < len)
 	{
-		if (fmt->input[fmt->pos] == conversions[i])
+		if (f->input[f->pos] == conversions[i])
 			holder->conversion = conversions[i];
 		i++;
 	}
 	free(conversions);
-	//fmt->pos++;
 }

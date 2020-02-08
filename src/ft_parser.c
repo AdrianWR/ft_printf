@@ -6,12 +6,13 @@
 /*   By: aroque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 00:40:11 by aroque            #+#    #+#             */
-/*   Updated: 2020/02/02 15:55:40 by aroque           ###   ########.fr       */
+/*   Updated: 2020/02/08 20:17:31 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "libft.h"
+#include <stdio.h>
 
 t_holder	*ft_holder_initializer(void)
 {
@@ -54,12 +55,14 @@ static void	ft_parser_dump(t_holder *holder)
 	ft_putchar(holder->conversion);
 	ft_putchar('\n');
 }
-#include <stdio.h>
+
+
 t_holder	*ft_parser(t_format *fmt)
 {
 	t_holder	*holder;
 
 	holder = ft_holder_initializer();
+	fmt->pos++;
 	ft_parser_flags(fmt, holder);
 	ft_parser_width(fmt, holder);
 	ft_parser_precision(fmt, holder);

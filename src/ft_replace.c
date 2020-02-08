@@ -6,7 +6,7 @@
 /*   By: aroque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 22:03:20 by aroque            #+#    #+#             */
-/*   Updated: 2020/02/06 22:54:08 by aroque           ###   ########.fr       */
+/*   Updated: 2020/02/08 18:12:55 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ void	ft_replace_conversion(t_holder *h, va_list args)
 		h->replace = ft_handle_p(h, args);
 	else if (h->conversion == '%')
 		h->replace = ft_handle_pct(h);
-	else
-		h->replace = ft_strdup("");
 }
 
 /*

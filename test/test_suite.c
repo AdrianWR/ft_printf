@@ -6,7 +6,7 @@
 /*   By: aroque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 13:33:39 by aroque            #+#    #+#             */
-/*   Updated: 2020/02/06 22:17:11 by aroque           ###   ########.fr       */
+/*   Updated: 2020/02/08 20:15:50 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,39 +14,45 @@
 #include <stdio.h>
 #include "ft_printf.h"
 
-static void	ft_printf_test(const char *format, ...)
-{
-	int ret;
-	int ret_ft;
-
-	va_list args;
-	va_list ft_args;
-	va_start(args, format);
-	va_copy(ft_args, args);
-	ret = vprintf(format, args);
-	va_end(args);
-	ret_ft = ft_vprintf(format, ft_args);
-	va_end(ft_args);
-	if (ret != ret_ft)
-		dprintf(2, "Error: ft_printf = %d; printf = %d\n", ret_ft, ret);
-}
+//static void	ft_printf_test(const char *format, ...)
+//{
+//	int ret;
+//	int ret_ft;
+//
+//	va_list args;
+//	va_list ft_args;
+//	va_start(args, format);
+//	va_copy(ft_args, args);
+//	ret = vprintf(format, args);
+//	va_end(args);
+//	ret_ft = ft_vprintf(format, ft_args);
+//	va_end(ft_args);
+//	if (ret != ret_ft)
+//		dprintf(2, "Error: ft_printf = %d; printf = %d\n", ret_ft, ret);
+//}
 
 int main(void)
 {
-	void *p;
-	char a;
+//	(void) ft_printf_test;
 
-	p = NULL;
-	a = '4';
-	//(void) ft_printf_test;
-	//printf("%s", ft_itoa_ubase(UINT_MAX, DEC_BASE));
-	//printf("Teste interes%csante\n", '\0');
-	ft_printf_test("Teste interessante\n");
-	ft_printf_test("Pointer %p\n", p);
-	ft_printf_test("Pointer %.p\n", p);
-	ft_printf_test("Pointer %p\n", &a);
-	ft_printf_test("Pointer %.3p\n", &a);
-	ft_printf_test("Numero decimal: %d\n", 1);
+	//char a = 4;
+
+	//printf("%5");
+	ft_printf("%-*.*s", -7, -3, "yolo");
+	ft_printf("%.*i", -6, -3);
+	//ft_printf("%05");
+	//ft_printf("%-05");
+	//ft_printf("%-5");
+	//ft_printf_test("Teste muito bom\n");
+	//ft_printf_test("%p\n", NULL);
+	//ft_printf_test("%2p\n", NULL);
+	//ft_printf_test("%5p\n", NULL);
+	//ft_printf_test("%5.p\n", NULL);
+	//ft_printf_test("%%\n");
+	//ft_printf_test("%s\n", ft_itoa_ubase(UINT_MAX, DEC_BASE));
+	//ft_printf_test("Teste interes%csante\n", '\0');
+	//ft_printf_test("Teste interessante\n");
+	//ft_printf_test("Numero decimal: %d\n", 1);
 	//ft_printf_test("Numero decimal: %d\n", -12);
 	//ft_printf_test("%5d\n", 231);
 	//ft_printf_test("%-5d\n", 231);
