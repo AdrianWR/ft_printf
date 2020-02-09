@@ -1,27 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_placeholder.c                                   :+:      :+:    :+:   */
+/*   ft_conversion_f.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aroque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/09 08:46:45 by aroque            #+#    #+#             */
-/*   Updated: 2020/02/09 08:46:50 by aroque           ###   ########.fr       */
+/*   Created: 2020/02/09 03:12:14 by aroque            #+#    #+#             */
+/*   Updated: 2020/02/09 04:56:58 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_placeholder(int fd, t_format *fmt)
+char		*ft_conversion_f(t_holder *h, va_list args)
 {
-	t_holder	*h;
-
-	h = ft_parser(fmt);
-	if (h->conversion)
-	{
-		ft_replace(h, fmt->args);
-		fmt->len += write(fd, h->replace, h->len);
-		free(h->replace);
-	}
-	free(h);
+	(void) h;
+	(void) args;
+	ft_ftoa(va_arg(args, double));
+	return (NULL);
 }

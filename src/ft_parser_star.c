@@ -6,13 +6,13 @@
 /*   By: aroque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 23:51:16 by aroque            #+#    #+#             */
-/*   Updated: 2020/02/08 23:51:29 by aroque           ###   ########.fr       */
+/*   Updated: 2020/02/09 08:28:38 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_parser_asterisk(char option, t_format *f, t_holder *h)
+int	ft_parser_star(char option, t_format *f, t_holder *h)
 {
 	int spec;
 

@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_handle_c.c                                      :+:      :+:    :+:   */
+/*   ft_conversion_c.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aroque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 15:43:00 by aroque            #+#    #+#             */
-/*   Updated: 2020/02/08 23:44:47 by aroque           ###   ########.fr       */
+/*   Updated: 2020/02/09 02:54:45 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "ft_printf.h"
 
-static char	*ft_handle_width(t_holder *h, char src)
+static char	*ft_width(t_holder *h, char src)
 {
 	char	pad;
 	char	*dest;
@@ -29,15 +28,15 @@ static char	*ft_handle_width(t_holder *h, char src)
 	return (dest);
 }
 
-char		*ft_handle_c(t_holder *h, va_list args)
+char		*ft_conversion_c(t_holder *h, va_list args)
 {
 	int		c;
 	char	*replace;
 
 	c = va_arg(args, int);
 	if (!h->width)
-		h->width++;
-	replace = ft_handle_width(h, c);
+		h->width += 1;
+	replace = ft_width(h, c);
 	h->len = h->width;
 	return (replace);
 }

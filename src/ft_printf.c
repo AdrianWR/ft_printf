@@ -6,7 +6,7 @@
 /*   By: aroque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 02:46:09 by aroque            #+#    #+#             */
-/*   Updated: 2020/02/09 00:10:14 by aroque           ###   ########.fr       */
+/*   Updated: 2020/02/09 04:46:26 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	ft_printf(const char *format, ...)
 	return (len);
 }
 
-int	ft_dprintf(const char *format, ...)
+int	ft_dprintf(int fd, const char *format, ...)
 {
 	int		len;
 	va_list	ap;
@@ -36,7 +36,7 @@ int	ft_dprintf(const char *format, ...)
 
 int	ft_vprintf(const char *format, va_list args)
 {
-	return (ft_vdprintf(1, format, args));
+	return (ft_vdprintf(STDOUT_FILENO, format, args));
 }
 
 int	ft_vdprintf(int fd, const char *format, va_list args)

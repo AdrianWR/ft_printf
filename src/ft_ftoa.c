@@ -1,27 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_placeholder.c                                   :+:      :+:    :+:   */
+/*   ft_ftoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aroque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/09 08:46:45 by aroque            #+#    #+#             */
-/*   Updated: 2020/02/09 08:46:50 by aroque           ###   ########.fr       */
+/*   Created: 2020/02/09 04:40:51 by aroque            #+#    #+#             */
+/*   Updated: 2020/02/09 06:49:49 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <stdio.h>
 
-void	ft_placeholder(int fd, t_format *fmt)
+static int	ft_pow(int base, unsigned int exp)
 {
-	t_holder	*h;
+	if (!exp)
+		return (1);
+	return (base * ft_pow(base, exp - 1));
+}
 
-	h = ft_parser(fmt);
-	if (h->conversion)
+char	*ft_ftoa(float f)
+{
+	int		ipart;
+	float	fpart;
+
+	(void) ft_pow;
+	ipart = (int)f;
+	fpart = f - ipart; 
+	while ((fpart - ipart) > 0)
 	{
-		ft_replace(h, fmt->args);
-		fmt->len += write(fd, h->replace, h->len);
-		free(h->replace);
+		fpart *= 10;
 	}
-	free(h);
+	printf("real: %d\n", ipart);
+	printf("fraction: %f\n", fpart);
+	return (NULL);
 }

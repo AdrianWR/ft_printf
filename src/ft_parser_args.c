@@ -6,7 +6,7 @@
 /*   By: aroque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 11:15:20 by aroque            #+#    #+#             */
-/*   Updated: 2020/02/08 23:51:33 by aroque           ###   ########.fr       */
+/*   Updated: 2020/02/09 15:04:33 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ void	ft_parser_flags(t_format *f, t_holder *holder)
 			holder->flags |= FLAG_PLUS;
 		else if (f->input[f->pos] == '#')
 			holder->flags |= FLAG_HASH;
+		else if (f->input[f->pos] == ' ')
+			holder->flags |= FLAG_SPACE;
 		f->pos++;
 	}
 }
@@ -36,7 +38,7 @@ void	ft_parser_width(t_format *f, t_holder *h)
 		return ;
 	if (f->input[f->pos] == '*')
 	{
-		h->width = ft_parser_asterisk(WIDTH, f, h);
+		h->width = ft_parser_star(WIDTH, f, h);
 		f->pos++;
 	}
 	else
@@ -56,7 +58,7 @@ void	ft_parser_precision(t_format *f, t_holder *h)
 		f->pos++;
 		if (f->input[f->pos] == '*')
 		{
-			h->precision = ft_parser_asterisk(PRECISION, f, h);
+			h->precision = ft_parser_star(PRECISION, f, h);
 			f->pos++;
 		}
 		else

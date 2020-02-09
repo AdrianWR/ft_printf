@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_handle_s.c                                      :+:      :+:    :+:   */
+/*   ft_conversion_s.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aroque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/01 06:56:48 by aroque            #+#    #+#             */
-/*   Updated: 2020/02/08 23:58:53 by aroque           ###   ########.fr       */
+/*   Updated: 2020/02/09 02:55:37 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include "libft.h"
 
-static char	*ft_handle_width(t_holder *h, char *src)
+static char	*ft_width(t_holder *h, char *src)
 {
 	char	pad;
 
@@ -25,7 +24,7 @@ static char	*ft_handle_width(t_holder *h, char *src)
 	return (ft_pad_left(src, pad, h->width));
 }
 
-char		*ft_handle_s(t_holder *h, va_list args)
+char		*ft_conversion_s(t_holder *h, va_list args)
 {
 	char	*src;
 	char	*tmp;
@@ -39,7 +38,7 @@ char		*ft_handle_s(t_holder *h, va_list args)
 	if (!(tmp = malloc((h->precision + 1) * sizeof(*tmp))))
 		return (NULL);
 	ft_strlcpy(tmp, src, h->precision + 1);
-	replace = ft_handle_width(h, tmp);
+	replace = ft_width(h, tmp);
 	h->len = ft_strlen(replace);
 	return (replace);
 }

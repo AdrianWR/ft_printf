@@ -6,7 +6,7 @@
 /*   By: aroque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/01 02:17:06 by aroque            #+#    #+#             */
-/*   Updated: 2020/02/06 21:44:08 by aroque           ###   ########.fr       */
+/*   Updated: 2020/02/09 02:32:43 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int		ft_base_error(const char *base)
 	size_t	len;
 
 	len = ft_strlen(base);
-	if (len < 2)
+	if (len <= 1)
 		return (1);
 	i = 0;
 	while (i < len)
@@ -36,7 +36,7 @@ static int		ft_base_error(const char *base)
 	return (0);
 }
 
-static size_t	ft_digit_counter(long unsigned int n, int base_len)
+static size_t	ft_digit_counter(long unsigned int n, size_t base_len)
 {
 	if (!(n / base_len))
 		return (1);
@@ -51,15 +51,15 @@ static size_t	ft_digit_counter(long unsigned int n, int base_len)
 ** For example, the decimal base would be "0123456789".
 */
 
-char			*ft_itoa_ubase(long unsigned int n, const char *base)
+char			*ft_uitoa_base(long unsigned int n, const char *base)
 {
 	char	*s;
 	size_t	len;
-	int		base_len;
+	size_t	base_len;
 
 	if (ft_base_error(base))
 		return (NULL);
-	base_len = (int)ft_strlen(base);
+	base_len = ft_strlen(base);
 	len = ft_digit_counter(n, base_len);
 	if (!(s = malloc((len + 1) * sizeof(*s))))
 		return (NULL);

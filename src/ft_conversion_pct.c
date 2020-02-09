@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_handle_pct.c                                    :+:      :+:    :+:   */
+/*   ft_conversion_pct.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aroque <aroque@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aroque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/03 23:09:49 by aroque            #+#    #+#             */
-/*   Updated: 2020/02/09 00:04:24 by aroque           ###   ########.fr       */
+/*   Created: 2020/02/09 02:36:43 by aroque            #+#    #+#             */
+/*   Updated: 2020/02/09 02:41:55 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*ft_handle_pct(t_holder *h)
+char	*ft_conversion_pct(t_holder *h)
 {
 	char	pad;
 	char	*src;

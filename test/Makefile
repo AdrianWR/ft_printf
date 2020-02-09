@@ -6,14 +6,14 @@
 #    By: aroque <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/26 02:48:28 by aroque            #+#    #+#              #
-#    Updated: 2020/02/08 23:40:05 by aroque           ###   ########.fr        #
+#    Updated: 2020/02/09 02:40:26 by aroque           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	run
 
 CC			=	gcc
-CC_FLAGS	=	-g					\
+CC_FLAGS	=	#-g					\
 				-Wall				\
 				-Wextra				\
 				-Werror

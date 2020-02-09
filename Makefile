@@ -6,7 +6,7 @@
 #    By: aroque <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/26 02:48:28 by aroque            #+#    #+#              #
-#    Updated: 2020/02/09 00:04:26 by aroque           ###   ########.fr        #
+#    Updated: 2020/02/09 08:25:56 by aroque           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,17 +28,19 @@ SRC			=	${SRC_DIR}/ft_printf.c			\
 				${SRC_DIR}/ft_initializer.c		\
 				${SRC_DIR}/ft_parser.c			\
 				${SRC_DIR}/ft_parser_args.c		\
-				${SRC_DIR}/ft_parser_asterisk.c	\
+				${SRC_DIR}/ft_parser_star.c		\
 				${SRC_DIR}/ft_parser_dump.c		\
-				${SRC_DIR}/ft_itoa_ubase.c		\
+				${SRC_DIR}/ft_uitoa_base.c		\
+				${SRC_DIR}/ft_ftoa.c			\
 				${SRC_DIR}/ft_placeholder.c		\
 				${SRC_DIR}/ft_replace.c			\
-				${SRC_DIR}/ft_handle_pct.c		\
-				${SRC_DIR}/ft_handle_s.c		\
-				${SRC_DIR}/ft_handle_c.c		\
-				${SRC_DIR}/ft_handle_d.c		\
-				${SRC_DIR}/ft_handle_u.c		\
-				${SRC_DIR}/ft_handle_p.c
+				${SRC_DIR}/ft_conversion_pct.c	\
+				${SRC_DIR}/ft_conversion_s.c	\
+				${SRC_DIR}/ft_conversion_c.c	\
+				${SRC_DIR}/ft_conversion_d.c	\
+				${SRC_DIR}/ft_conversion_u.c	\
+				${SRC_DIR}/ft_conversion_p.c	\
+				${SRC_DIR}/ft_conversion_f.c
 
 OBJ_DIR		=	./build
 OBJ			=	$(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC))
@@ -72,7 +74,7 @@ fclean: clean
 
 re: fclean all
 
-bonus:
+bonus: $(NAME)
 
 test: all
 	@$(MAKE) -C $(TEST_DIR)

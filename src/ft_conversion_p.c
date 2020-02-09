@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_handle_p.c                                      :+:      :+:    :+:   */
+/*   ft_conversion_p.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aroque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 11:14:40 by aroque            #+#    #+#             */
-/*   Updated: 2020/02/08 23:59:27 by aroque           ###   ########.fr       */
+/*   Updated: 2020/02/09 02:58:21 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "ft_printf.h"
 
-static char	*ft_handle_precision(t_holder *h, void *p)
+static char	*ft_precision(t_holder *h, void *p)
 {
 	char	*ptr;
 	char	*tmp;
@@ -28,7 +27,7 @@ static char	*ft_handle_precision(t_holder *h, void *p)
 	}
 	else
 	{
-		tmp = ft_itoa_ubase((long unsigned)p, HEX_BASE_L);
+		tmp = ft_uitoa_base((long unsigned)p, HEX_BASE_L);
 		if (h->precision >= 0 && h->precision > (int)ft_strlen(tmp))
 			ptr = ft_pad_left(tmp, '0', h->precision);
 		else
@@ -38,7 +37,7 @@ static char	*ft_handle_precision(t_holder *h, void *p)
 	return (ptr);
 }
 
-static char	*ft_handle_width(t_holder *h, char *src)
+static char	*ft_width(t_holder *h, char *src)
 {
 	char	pad;
 
@@ -50,7 +49,7 @@ static char	*ft_handle_width(t_holder *h, char *src)
 	return (ft_pad_left(src, pad, h->width));
 }
 
-char		*ft_handle_p(t_holder *h, va_list args)
+char		*ft_conversion_p(t_holder *h, va_list args)
 {
 	void	*p;
 	char	*ptr;
@@ -58,13 +57,14 @@ char		*ft_handle_p(t_holder *h, va_list args)
 
 	p = va_arg(args, void *);
 	h->len = ft_strlen(PTR_START) + 1;
-	ptr = ft_handle_precision(h, p);
+	ptr = ft_precision(h, p);
 	h->len += ft_strlen(ptr);
-	tmp = malloc(h->len * sizeof(unsigned char));
+	if (!(tmp = malloc(h->len * sizeof(unsigned char))))
+		return (NULL);
 	ft_strlcpy(tmp, PTR_START, ft_strlen(PTR_START) + 1);
 	ft_strlcat(tmp, ptr, h->len);
 	free(ptr);
-	ptr = ft_handle_width(h, tmp);
+	ptr = ft_width(h, tmp);
 	h->len = ft_strlen(ptr);
 	return (ptr);
 }

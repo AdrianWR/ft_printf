@@ -1,2 +1,5 @@
 pft_2019/
 42TESTERS-PRINTF/
+CMakeLists.txt
+cmake-build-debug/
+pft/
