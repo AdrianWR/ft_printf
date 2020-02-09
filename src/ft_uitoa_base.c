@@ -6,11 +6,17 @@
 /*   By: aroque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/01 02:17:06 by aroque            #+#    #+#             */
-/*   Updated: 2020/02/09 02:32:43 by aroque           ###   ########.fr       */
+/*   Updated: 2020/02/09 16:44:39 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+/*
+** Check for errors in base description,
+** such as repeated characters or less than
+** two digits in its representation
+*/
 
 static int		ft_base_error(const char *base)
 {
@@ -36,7 +42,7 @@ static int		ft_base_error(const char *base)
 	return (0);
 }
 
-static size_t	ft_digit_counter(long unsigned int n, size_t base_len)
+static size_t	ft_digit_counter(uintmax_t n, size_t base_len)
 {
 	if (!(n / base_len))
 		return (1);
@@ -51,7 +57,7 @@ static size_t	ft_digit_counter(long unsigned int n, size_t base_len)
 ** For example, the decimal base would be "0123456789".
 */
 
-char			*ft_uitoa_base(long unsigned int n, const char *base)
+char			*ft_uitoa_base(uintmax_t n, const char *base)
 {
 	char	*s;
 	size_t	len;

@@ -6,7 +6,7 @@
 /*   By: aroque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 13:33:39 by aroque            #+#    #+#             */
-/*   Updated: 2020/02/09 14:57:34 by aroque           ###   ########.fr       */
+/*   Updated: 2020/02/09 16:38:57 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,25 +94,25 @@ int main(void)
 	//ft_printf_test("%.03s\n", NULL);
 	//ft_printf_test("%3.1s\n", NULL);
 	//ft_printf_test("%9.1s\n", NULL);
-	ft_printf_test("Numero decimal: %d\n", 42);
+	//ft_printf_test("Numero decimal: %d\n", 42);
 	//ft_printf_test("Numero hexadecimal: %x %%\n", 42);
 	//ft_printf_test("Test - No Args\n");
 	//ft_printf_test("Test %s %s\n", "de", "string");
 	//ft_printf_test("Teste %d %d %d\n", 3, 3, 3);
 	//ft_printf_test("Teste %4.2%\n");
 	//ft_printf_test("Teste %d\n", 2048);
-	ft_printf_test("Teste %x\n", 0);
-	ft_printf_test("Teste %#x\n", 0);
-	ft_printf_test("Teste %x\n", 255);
-	ft_printf_test("Teste %#x\n", 255);
-	ft_printf_test("Teste %X\n", 255);
-	ft_printf_test("Teste %#X\n", 255);
-	ft_printf_test("Teste %7X\n", 255);
-	ft_printf_test("Teste %#7X\n", 255);
-	ft_printf_test("Teste %-7X\n", 255);
-	ft_printf_test("Teste %-#7X\n", 255);
-	ft_printf_test("Teste %07x\n", 255);
-	ft_printf_test("Teste %0#7x\n", 255);
+	//ft_printf_test("Teste %x\n", 0);
+	//ft_printf_test("Teste %#x\n", 0);
+	//ft_printf_test("Teste %x\n", 255);
+	//ft_printf_test("Teste %#x\n", 255);
+	//ft_printf_test("Teste %X\n", 255);
+	//ft_printf_test("Teste %#X\n", 255);
+	//ft_printf_test("Teste %7X\n", 255);
+	//ft_printf_test("Teste %#7X\n", 255);
+	//ft_printf_test("Teste %-7X\n", 255);
+	//ft_printf_test("Teste %-#7X\n", 255);
+	//ft_printf_test("Teste %07x\n", 255);
+	//ft_printf_test("Teste %0#7x\n", 255);
 	//ft_printf_test("Teste %%\n");
 	//ft_printf_test("Teste %%\n");
 	//ft_printf_test("Teste %20s\n", "pad");
@@ -140,4 +140,8 @@ int main(void)
 	//ft_printf_test("Teste: %-+10d\n", 1);
 	//ft_printf_test("%-32s\n", "abc");
 	//ft_printf_test("%-32s\n", NULL);
+	ft_printf_test("%d\n", LONG_MAX);
+	ft_printf_test("%ld\n", LONG_MAX);
+	ft_printf_test("%lld\n", LLONG_MAX);
+	ft_printf_test("%hd\n", LONG_MAX);
 }

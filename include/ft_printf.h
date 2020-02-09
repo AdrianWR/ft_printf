@@ -6,7 +6,7 @@
 /*   By: aroque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 02:47:31 by aroque            #+#    #+#             */
-/*   Updated: 2020/02/09 16:21:41 by aroque           ###   ########.fr       */
+/*   Updated: 2020/02/09 17:00:56 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,17 @@
 # include <stdarg.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include <libft.h>
+# include <wchar.h>
+# include "libft.h"
 
 # define PLACEHOLDER_FLAGS			"+- 0#"
-# define PLACEHOLDER_CONVERSIONS	"nfgecspdiuxX%"
+# define PLACEHOLDER_CONVERSIONS	"nfgecspdiuxXo%"
 
 # define MINUS		"-"
 # define PLUS		"+"
 # define SPACE		" "
-# define SIGNALS	"+- "
 # define ZERO		"0"
+# define SIGNALS	"+- "
 
 # define WIDTH		0
 # define PRECISION	1
@@ -44,6 +45,7 @@
 # define DEC_BASE	"0123456789"
 # define HEX_BASE_L	"0123456789abcdef"
 # define HEX_BASE_U	"0123456789ABCDEF"
+# define OCT_BASE	"01234567"
 
 # define MANTISSA_MASK 0x7fffff
 
@@ -121,7 +123,7 @@ void			ft_placeholder(int fd, t_format *fmt);
 void			ft_replace(t_holder *h, va_list args);
 char			*ft_pad_left(char *src, char pad, int width);
 char			*ft_pad_right(char *src, char pad, int width);
-char			*ft_uitoa_base(long unsigned int n, const char *base);
+char			*ft_uitoa_base(uintmax_t n, const char *base);
 char			*ft_ftoa(float f);
 
 /*

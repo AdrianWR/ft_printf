@@ -6,14 +6,30 @@
 /*   By: aroque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 08:29:59 by aroque            #+#    #+#             */
-/*   Updated: 2020/02/09 14:48:50 by aroque           ###   ########.fr       */
+/*   Updated: 2020/02/09 17:07:39 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
-static char	*ft_precision(unsigned int u, t_holder *h, char *base)
+static uintmax_t	ft_length(t_holder *h, va_list args)
+{
+	uintmax_t	u;
+
+	if (h->length & L_CHAR)
+		u = (unsigned char)(va_arg(args, unsigned int));
+	else if (h->length & L_SHORT)
+		u = (unsigned short)(va_arg(args, unsigned int));
+	else if (h->length & L_LONG)
+		u = (unsigned long)(va_arg(args, unsigned long int));
+	else if (h->length & L_LLONG)
+		u = (unsigned long long)(va_arg(args, unsigned long long int));
+	else
+		u = (unsigned int)(va_arg(args, unsigned int));
+	return ((uintmax_t)u);
+}
+
+static char	*ft_precision(uintmax_t u, t_holder *h, char *base)
 {
 	char *tmp;
 	char hash_start[3];
@@ -25,9 +41,7 @@ static char	*ft_precision(unsigned int u, t_holder *h, char *base)
 	else
 		tmp = ft_pad_left(ft_uitoa_base(u, base), '0', h->precision);
 	if (u > 0 && h->conversion != 'u' && h->flags & FLAG_HASH)
-	{
 		return (ft_strjoin(hash_start, tmp));
-	}
 	return (tmp);
 }
 
@@ -59,10 +73,12 @@ static char	*ft_width(char *src, t_holder *h)
 
 char		*ft_conversion_ux(t_holder *h, va_list args, char *base)
 {
-	char	*replace;
-	char	*tmp;
+	uintmax_t	u;
+	char		*replace;
+	char		*tmp;
 
-	tmp = ft_precision(va_arg(args, unsigned int), h, base);
+	u = ft_length(h, args);
+	tmp = ft_precision(u, h, base);
 	replace = ft_width(tmp, h);
 	free(tmp);
 	h->len = ft_strlen(replace);

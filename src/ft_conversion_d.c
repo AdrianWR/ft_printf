@@ -6,13 +6,13 @@
 /*   By: aroque <aroque@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 23:23:37 by aroque            #+#    #+#             */
-/*   Updated: 2020/02/09 16:26:57 by aroque           ###   ########.fr       */
+/*   Updated: 2020/02/09 16:40:41 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-intmax_t	*ft_length(t_holder *h, va_list args)
+static intmax_t	ft_length(t_holder *h, va_list args)
 {
 	intmax_t	d;
 
@@ -46,10 +46,9 @@ static char	*ft_precision(intmax_t d, t_holder *h)
 		else
 			src = ft_uitoa_base(d, DEC_BASE);
 		if (h->flags & FLAG_PLUS)
-			dest = ft_strjoin(PLUS, (ft_pad_left(src, ZERO, h->precision)));
+			dest = ft_strjoin(PLUS, (ft_pad_left(src, '0', h->precision)));
 		else if (h->flags & FLAG_SPACE)
-dd
-			dest = ft_strjoin(SPACE, (ft_pad_left(src, ZERO, h->precision)));
+			dest = ft_strjoin(SPACE, (ft_pad_left(src, '0', h->precision)));
 		else
 			dest = ft_pad_left(src, '0', h->precision);
 	}
@@ -61,7 +60,7 @@ static char	*ft_width(char *src, t_holder *h)
 	char	pad;
 	char	*dest;
 
-	pad = SPACE;
+	pad = ' ';
 	if (h->width <= (int)ft_strlen(src))
 		return (ft_strdup(src));
 	else
@@ -71,10 +70,10 @@ static char	*ft_width(char *src, t_holder *h)
 		else
 		{
 			if ((h->flags & FLAG_ZERO) && h->precision < 0)
-				pad = ZERO;
+				pad = '0';
 			dest = ft_pad_left(src, pad, h->width);
 		}
-		if (ft_strchr(SIGNALS, src[0]) && pad == ZERO)
+		if (ft_strchr(SIGNALS, src[0]) && pad == '0')
 		{
 			dest[0] = *ft_strchr(SIGNALS, src[0]);
 			dest[h->width - ft_strlen(src)] = pad;
