@@ -6,7 +6,7 @@
 /*   By: aroque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 15:43:00 by aroque            #+#    #+#             */
-/*   Updated: 2020/02/07 20:11:41 by aroque           ###   ########.fr       */
+/*   Updated: 2020/02/08 23:44:47 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static char	*ft_handle_width(t_holder *h, char src)
 	return (dest);
 }
 
-char	*ft_handle_c(t_holder *h, va_list args)
+char		*ft_handle_c(t_holder *h, va_list args)
 {
 	int		c;
 	char	*replace;

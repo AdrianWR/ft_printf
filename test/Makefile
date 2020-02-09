@@ -6,18 +6,17 @@
 #    By: aroque <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/26 02:48:28 by aroque            #+#    #+#              #
-#    Updated: 2020/02/08 18:38:37 by aroque           ###   ########.fr        #
+#    Updated: 2020/02/08 23:40:05 by aroque           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	run
 
 CC			=	gcc
-CC_FLAGS	=	-Wall				\
+CC_FLAGS	=	-g					\
+				-Wall				\
 				-Wextra				\
-				-Werror				\
-				-g#	 				\
-				-fsanitize=address
+				-Werror
 
 INCLUDES	=	../include
 

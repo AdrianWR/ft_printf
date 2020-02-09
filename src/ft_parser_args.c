@@ -6,31 +6,11 @@
 /*   By: aroque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 11:15:20 by aroque            #+#    #+#             */
-/*   Updated: 2020/02/08 20:16:08 by aroque           ###   ########.fr       */
+/*   Updated: 2020/02/08 23:51:33 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include "libft.h"
-
-# define WIDTH 0
-# define PRECISION 1
-
-int	ft_parser_asterisk(char option, t_format *f, t_holder *h)
-{
-	int spec;
-
-	spec = va_arg(f->args, int);
-	if (spec < 0)
-	{
-		if (!option)
-			spec *= -1;
-		else
-			spec = -1;
-		h->flags |= FLAG_MINUS;
-	}
-	return (spec);
-}
 
 void	ft_parser_flags(t_format *f, t_holder *holder)
 {
@@ -135,4 +115,5 @@ void	ft_parser_conversion(t_format *f, t_holder *holder)
 		i++;
 	}
 	free(conversions);
+	f->pos++;
 }

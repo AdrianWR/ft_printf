@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_process.c                                       :+:      :+:    :+:   */
+/*   ft_parser_asterisk.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aroque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/29 16:13:48 by aroque            #+#    #+#             */
-/*   Updated: 2020/02/08 19:17:05 by aroque           ###   ########.fr       */
+/*   Created: 2020/02/08 23:51:16 by aroque            #+#    #+#             */
+/*   Updated: 2020/02/08 23:51:29 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
-void	ft_process(int fd, t_format *fmt)
+int	ft_parser_asterisk(char option, t_format *f, t_holder *h)
 {
-	t_holder	*h;
+	int spec;
 
-	h = ft_parser(fmt);
-	if (h->conversion)
+	spec = va_arg(f->args, int);
+	if (spec < 0)
 	{
-		ft_replace_conversion(h, fmt->args);
-		fmt->len += write(fd, h->replace, h->len);
-		free(h->replace);
+		if (!option)
+		{
+			spec *= -1;
+			h->flags |= FLAG_MINUS;
+		}
+		else
+			spec = -1;
 	}
-	free(h);
+	return (spec);
 }

@@ -6,7 +6,7 @@
 /*   By: aroque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 10:06:14 by aroque            #+#    #+#             */
-/*   Updated: 2020/02/02 16:41:05 by aroque           ###   ########.fr       */
+/*   Updated: 2020/02/08 23:57:55 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static size_t	ft_digit_counter(int n, int base_len)
 		return (ft_digit_counter(n / base_len, base_len) + 1);
 }
 
-size_t	ft_abs(int n)
+static size_t	ft_abs(int n)
 {
 	if (n < 0)
 		return (-(unsigned int)n);

@@ -6,25 +6,23 @@
 /*   By: aroque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 22:03:20 by aroque            #+#    #+#             */
-/*   Updated: 2020/02/08 18:12:55 by aroque           ###   ########.fr       */
+/*   Updated: 2020/02/08 23:57:04 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "libft.h"
-#include <stdio.h>
 
-
-void	ft_replace_conversion(t_holder *h, va_list args)
+void	ft_replace(t_holder *h, va_list args)
 {
 	if (h->conversion == 'd' || h->conversion == 'i')
 		h->replace = ft_handle_d(h, args);
 	else if (h->conversion == 'u')
-		h->replace = ft_handle_uxX(h, args, DEC_BASE);
+		h->replace = ft_handle_ux(h, args, DEC_BASE);
 	else if (h->conversion == 'x')
-		h->replace = ft_handle_uxX(h, args, HEX_BASE_L);
+		h->replace = ft_handle_ux(h, args, HEX_BASE_L);
 	else if (h->conversion == 'X')
-		h->replace = ft_handle_uxX(h, args, HEX_BASE_U);
+		h->replace = ft_handle_ux(h, args, HEX_BASE_U);
 	else if (h->conversion == 's')
 		h->replace = ft_handle_s(h, args);
 	else if (h->conversion == 'c')
@@ -36,14 +34,14 @@ void	ft_replace_conversion(t_holder *h, va_list args)
 }
 
 /*
-**	Insert some padding characters to a string
-** 	accordingly to a given width. 
+**	Insert some pad characters to a string
+** 	accordingly to a given width.
 */
 
-char	*ft_padding_left(char *src, char pad, int width)
+char	*ft_pad_left(char *src, char pad, int width)
 {
-	char *dest;
-	size_t len;
+	char	*dest;
+	size_t	len;
 
 	len = ft_strlen(src);
 	if (!(dest = malloc(width + 1)))
@@ -56,7 +54,7 @@ char	*ft_padding_left(char *src, char pad, int width)
 	return (dest);
 }
 
-char	*ft_padding_right(char *src, char pad, int width)
+char	*ft_pad_right(char *src, char pad, int width)
 {
 	char	*dest;
 	size_t	len;
@@ -71,42 +69,3 @@ char	*ft_padding_right(char *src, char pad, int width)
 	dest[width] = '\0';
 	return (dest);
 }
-
-//void	ft_replace_width(t_holder *h)
-//{
-//	char	*src;
-//	char	pad;
-//
-//	pad = ' ';
-//	src = ft_strdup(h->replace);
-//	free(h->replace);
-//	if (h->flags & FLAG_MINUS)
-//	{
-//		h->replace = ft_padding_right(src, pad, h->width);
-//		return ;
-//	}
-//	if (h->flags & FLAG_ZERO)
-//		pad = '0';
-//	h->replace = ft_padding_left(src, pad, h->width);
-//}
-//
-//void	ft_replace_precision(t_holder *h)
-//{
-//	char *src;
-//
-//	src = ft_strdup(h->replace);
-//	if (h->precision >= 0)
-//	{
-//		if (ft_memchr("diouxX", h->conversion, 6))
-//		{
-//			free(h->replace);
-//			h->replace = ft_padding_left(src, '0', h->precision);
-//		}
-//		else if (h->conversion == 'p' && h->precision == 0)
-//		{
-//			free(h->replace);
-//			h->replace = ft_strdup("0x");
-//		}
-//	}
-//	free(src);
-//}

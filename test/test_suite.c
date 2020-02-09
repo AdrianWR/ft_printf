@@ -6,7 +6,7 @@
 /*   By: aroque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 13:33:39 by aroque            #+#    #+#             */
-/*   Updated: 2020/02/08 20:15:50 by aroque           ###   ########.fr       */
+/*   Updated: 2020/02/08 23:56:22 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,32 +14,36 @@
 #include <stdio.h>
 #include "ft_printf.h"
 
-//static void	ft_printf_test(const char *format, ...)
-//{
-//	int ret;
-//	int ret_ft;
-//
-//	va_list args;
-//	va_list ft_args;
-//	va_start(args, format);
-//	va_copy(ft_args, args);
-//	ret = vprintf(format, args);
-//	va_end(args);
-//	ret_ft = ft_vprintf(format, ft_args);
-//	va_end(ft_args);
-//	if (ret != ret_ft)
-//		dprintf(2, "Error: ft_printf = %d; printf = %d\n", ret_ft, ret);
-//}
+static void	ft_printf_test(const char *format, ...)
+{
+	int ret;
+	int ret_ft;
+
+	va_list args;
+	va_list ft_args;
+	va_start(args, format);
+	va_copy(ft_args, args);
+	ret = vprintf(format, args);
+	va_end(args);
+	ret_ft = ft_vprintf(format, ft_args);
+	va_end(ft_args);
+	if (ret != ret_ft)
+		dprintf(2, "Error: ft_printf = %d; printf = %d\n", ret_ft, ret);
+}
 
 int main(void)
 {
-//	(void) ft_printf_test;
+	(void) ft_printf_test;
 
 	//char a = 4;
 
-	//printf("%5");
-	ft_printf("%-*.*s", -7, -3, "yolo");
-	ft_printf("%.*i", -6, -3);
+	//ft_printf_test("%-*.*d\n", 3, 3, -12);
+	//ft_printf_test("%-0*i\n", 12, 8);
+	//ft_printf_test("%*.*u\n", 2, -1, 8);
+	printf("%*.*u\n", 2, -1, 8);
+	//ft_printf("%-*.*d", 3, 3, -12);
+	//ft_printf("%-*.*s", -7, -3, "yolo");
+	//ft_printf("%.*i", -6, -3);
 	//ft_printf("%05");
 	//ft_printf("%-05");
 	//ft_printf("%-5");
@@ -60,7 +64,7 @@ int main(void)
 	//ft_printf_test("%4.3d\n", 2890);
 	//ft_printf_test("Teste %#00*.*d, esse é o teste %s\n", 10, 5, 42, "legal");
 	//ft_printf_test("Teste %0%\n");
-	//ft_printf_test("%s\n", "string");
+	//ft_printf("%s\n", "string");
 	//ft_printf_test("%8.3s\n", "string");
 	//ft_printf_test("%-8.3s\n", "string");
 	//ft_printf_test("%8.s\n", "string");
@@ -80,7 +84,7 @@ int main(void)
 	//ft_printf_test("Teste %X\n", 255);
 	//ft_printf_test("Teste %%\n");
 	//ft_printf_test("Teste %%\n");
-	//ft_printf_test("Teste %20s\n", "padding");
+	//ft_printf_test("Teste %20s\n", "pad");
 	//ft_printf_test("Teste %20x\n", 90);
 	//ft_printf_test("Teste %4c\n", 'a');
 	//ft_printf_test("Teste %4u\n", 23);

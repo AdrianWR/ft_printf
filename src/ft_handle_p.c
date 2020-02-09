@@ -6,7 +6,7 @@
 /*   By: aroque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 11:14:40 by aroque            #+#    #+#             */
-/*   Updated: 2020/02/07 22:17:29 by aroque           ###   ########.fr       */
+/*   Updated: 2020/02/08 23:59:27 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static char	*ft_handle_precision(t_holder *h, void *p)
 	char	*ptr;
 	char	*tmp;
 
-	if (!p)	
+	if (!p)
 	{
 		if (h->precision < 0)
 			h->precision = 1;
@@ -30,7 +30,7 @@ static char	*ft_handle_precision(t_holder *h, void *p)
 	{
 		tmp = ft_itoa_ubase((long unsigned)p, HEX_BASE_L);
 		if (h->precision >= 0 && h->precision > (int)ft_strlen(tmp))
-			ptr = ft_padding_left(tmp, '0', h->precision);
+			ptr = ft_pad_left(tmp, '0', h->precision);
 		else
 			ptr = ft_strdup(tmp);
 		free(tmp);
@@ -46,11 +46,11 @@ static char	*ft_handle_width(t_holder *h, char *src)
 	if (!h->width)
 		return (ft_strdup(src));
 	if (h->flags & FLAG_MINUS)
-		return (ft_padding_right(src, pad, h->width));
-	return (ft_padding_left(src, pad, h->width));
+		return (ft_pad_right(src, pad, h->width));
+	return (ft_pad_left(src, pad, h->width));
 }
 
-char	*ft_handle_p(t_holder *h, va_list args)
+char		*ft_handle_p(t_holder *h, va_list args)
 {
 	void	*p;
 	char	*ptr;
