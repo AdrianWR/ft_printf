@@ -6,7 +6,7 @@
 /*   By: aroque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 02:47:31 by aroque            #+#    #+#             */
-/*   Updated: 2020/02/09 17:00:56 by aroque           ###   ########.fr       */
+/*   Updated: 2020/02/10 15:44:49 by adrian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdarg.h>
 # include <stdlib.h>
+# include <stdint.h>
 # include <unistd.h>
 # include <wchar.h>
 # include "libft.h"
@@ -60,6 +61,7 @@ typedef struct	s_holder
 	int			precision;
 	char		length;
 	char		conversion;
+	char		prefix;
 	char		*replace;
 	size_t		len;
 }				t_holder;
@@ -121,8 +123,9 @@ char			*ft_conversion_f(t_holder *h, va_list args);
 t_format		*ft_format_initializer(const char *format, va_list args);
 void			ft_placeholder(int fd, t_format *fmt);
 void			ft_replace(t_holder *h, va_list args);
-char			*ft_pad_left(char *src, char pad, int width);
-char			*ft_pad_right(char *src, char pad, int width);
+void			ft_pad_left(char *src, char pad, int width);
+void			ft_pad_right(char *src, char pad, int width);
+void			ft_prefix(t_holder *h);
 char			*ft_uitoa_base(uintmax_t n, const char *base);
 char			*ft_ftoa(float f);
 

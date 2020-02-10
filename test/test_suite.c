@@ -6,7 +6,7 @@
 /*   By: aroque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 13:33:39 by aroque            #+#    #+#             */
-/*   Updated: 2020/02/09 16:38:57 by aroque           ###   ########.fr       */
+/*   Updated: 2020/02/10 15:25:04 by adrian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ int main(void)
 	//ft_printf_test("Teste %4c\n", 'a');
 	//ft_printf_test("Teste %4u\n", 23);
 	//ft_printf_test("Teste %4u\n", -23);
-	//ft_printf_test("Teste %d\n", 20);
+	ft_printf_test("Teste %d\n", -1);
 	//ft_printf_test("Teste %5d\n", 20);
 	//ft_printf_test("Teste %5.1d\n", 20);
 	//ft_printf_test("Teste %-d\n", 42);
@@ -140,8 +140,8 @@ int main(void)
 	//ft_printf_test("Teste: %-+10d\n", 1);
 	//ft_printf_test("%-32s\n", "abc");
 	//ft_printf_test("%-32s\n", NULL);
-	ft_printf_test("%d\n", LONG_MAX);
-	ft_printf_test("%ld\n", LONG_MAX);
-	ft_printf_test("%lld\n", LLONG_MAX);
-	ft_printf_test("%hd\n", LONG_MAX);
+	//ft_printf_test("%d\n", LONG_MAX);
+	//ft_printf_test("%ld\n", LONG_MAX);
+	//ft_printf_test("%lld\n", LLONG_MAX);
+	//ft_printf_test("%hd\n", LONG_MAX);
 }

@@ -6,7 +6,7 @@
 /*   By: aroque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 00:40:11 by aroque            #+#    #+#             */
-/*   Updated: 2020/02/08 23:52:31 by aroque           ###   ########.fr       */
+/*   Updated: 2020/02/10 15:36:27 by adrian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ t_holder	*ft_holder_initializer(void)
 	holder->width = 0;
 	holder->precision = -1;
 	holder->length = 0;
+	holder->prefix = '\0';
 	holder->conversion = '\0';
 	holder->replace = NULL;
 	holder->len = 0;

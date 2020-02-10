@@ -6,7 +6,7 @@
 /*   By: aroque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 22:03:20 by aroque            #+#    #+#             */
-/*   Updated: 2020/02/09 17:07:17 by aroque           ###   ########.fr       */
+/*   Updated: 2020/02/10 15:45:13 by adrian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,34 +45,44 @@ void	ft_replace(t_holder *h, va_list args)
 ** 	accordingly to a given width.
 */
 
-char	*ft_pad_left(char *src, char pad, int width)
+void	ft_pad_left(char *src, char pad, int width)
 {
-	char	*dest;
+	char	*tmp;
 	size_t	len;
 
 	len = ft_strlen(src);
-	if (!(dest = malloc(width + 1)))
-		return (NULL);
 	if (width < (int)len || !width)
-		return (src);
-	ft_memset(dest, pad, width - len);
-	dest[width - len] = '\0';
-	ft_strlcat(dest, src, width + 1);
-	return (dest);
+		width = len;
+	if (!(tmp = malloc(width + 1)))
+		return ;
+	ft_memset(tmp, pad, width - len);
+	tmp[width - len] = '\0';
+	ft_strlcat(tmp, src, width + 1);
+	src = tmp;
+	free(tmp);
 }
 
-char	*ft_pad_right(char *src, char pad, int width)
+void	ft_pad_right(char *src, char pad, int width)
 {
-	char	*dest;
+	char	*tmp;
 	size_t	len;
 
 	len = ft_strlen(src);
-	if (!(dest = malloc(width + 1)))
-		return (NULL);
 	if (width < (int)len || !width)
-		return (src);
-	ft_strlcpy(dest, src, len + 1);
-	ft_memset(dest + len, pad, width - len);
-	dest[width] = '\0';
-	return (dest);
+		width = len;
+	if (!(tmp = malloc(width + 1)))
+		return ;
+	ft_strlcpy(tmp, src, len + 1);
+	ft_memset(tmp + len, pad, width - len);
+	tmp[width] = '\0';
+	src = tmp;
+	free(tmp);
+}
+
+void	ft_prefix(t_holder *h)
+{
+	int len;
+
+	len = (int)ft_strlen(h->replace) + 1;
+	ft_pad_left(h->replace, h->prefix, len);
 }

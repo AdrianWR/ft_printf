@@ -6,7 +6,7 @@
 #    By: aroque <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/26 02:48:28 by aroque            #+#    #+#              #
-#    Updated: 2020/02/09 08:25:56 by aroque           ###   ########.fr        #
+#    Updated: 2020/02/10 15:48:12 by adrian           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,10 +34,10 @@ SRC			=	${SRC_DIR}/ft_printf.c			\
 				${SRC_DIR}/ft_ftoa.c			\
 				${SRC_DIR}/ft_placeholder.c		\
 				${SRC_DIR}/ft_replace.c			\
+				${SRC_DIR}/ft_conversion_d.c	\
 				${SRC_DIR}/ft_conversion_pct.c	\
 				${SRC_DIR}/ft_conversion_s.c	\
 				${SRC_DIR}/ft_conversion_c.c	\
-				${SRC_DIR}/ft_conversion_d.c	\
 				${SRC_DIR}/ft_conversion_u.c	\
 				${SRC_DIR}/ft_conversion_p.c	\
 				${SRC_DIR}/ft_conversion_f.c
