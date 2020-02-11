@@ -6,7 +6,7 @@
 /*   By: aroque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 02:47:31 by aroque            #+#    #+#             */
-/*   Updated: 2020/02/11 00:33:52 by aroque           ###   ########.fr       */
+/*   Updated: 2020/02/11 14:09:44 by adrian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,13 +105,13 @@ void			ft_parser_dump(t_holder *h);
 ** ----------------------------
 */
 
-char			*ft_conversion_p(t_holder *h, va_list args);
+void			ft_conversion_pct(t_holder *h);
+void			ft_conversion_p(t_holder *h, va_list args);
 void			ft_conversion_d(t_holder *h, va_list args);
-char			*ft_conversion_ux(t_holder *h, va_list args, char *base);
 void			ft_conversion_s(t_holder *h, va_list args);
 void			ft_conversion_c(t_holder *h, va_list args);
-char			*ft_conversion_pct(t_holder *h);
-char			*ft_conversion_f(t_holder *h, va_list args);
+void			ft_conversion_f(t_holder *h, va_list args);
+void			ft_conversion_ux(t_holder *h, va_list args, const char *base);
 
 /*
 ** -----------------------

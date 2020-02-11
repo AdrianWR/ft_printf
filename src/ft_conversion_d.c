@@ -6,12 +6,11 @@
 /*   By: aroque <aroque@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 23:23:37 by aroque            #+#    #+#             */
-/*   Updated: 2020/02/11 00:17:29 by aroque           ###   ########.fr       */
+/*   Updated: 2020/02/11 12:13:34 by adrian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
 static intmax_t	ft_length(t_holder *h, va_list args)
 {
@@ -42,7 +41,7 @@ static void	ft_precision(intmax_t d, t_holder *h)
 	{
 		if (d < 0)
 		{
-			h->prefix = '-';
+			h->prefix = MINUS;
 			d = (uintmax_t)(d * -1);
 		}
 		h->replace = ft_uitoa_base(d, DEC_BASE);
@@ -58,25 +57,11 @@ static void	ft_precision(intmax_t d, t_holder *h)
 	ft_pad_left(&h->replace, ' ', h->width);
 }
 
-//static void	ft_width(t_holder *h)
-//{
-//	h->prefix ? h->width-- : h->width;
-//	if (h->flags & FLAG_MINUS)
-//		ft_pad_right(&h->replace, ' ', h->width);
-//	else if ((h->flags & FLAG_ZERO) && h->precision < 0)
-//		ft_pad_left(&h->replace, '0', h->width);
-//	ft_prefix(h);
-//	h->prefix ? h->width++ : h->width;
-//	ft_pad_left(&h->replace, ' ', h->width);
-//}
-
 void		ft_conversion_d(t_holder *h, va_list args)
 {
 	intmax_t	d;
 
 	d = ft_length(h, args);
 	ft_precision(d, h);
-	//ft_width(h);
 	h->len = ft_strlen(h->replace);
-	//return (h->replace);
 }

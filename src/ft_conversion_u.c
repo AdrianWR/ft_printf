@@ -6,11 +6,12 @@
 /*   By: aroque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 08:29:59 by aroque            #+#    #+#             */
-/*   Updated: 2020/02/09 17:07:39 by aroque           ###   ########.fr       */
+/*   Updated: 2020/02/11 12:28:54 by adrian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <stdio.h>
 
 static uintmax_t	ft_length(t_holder *h, va_list args)
 {
@@ -29,58 +30,43 @@ static uintmax_t	ft_length(t_holder *h, va_list args)
 	return ((uintmax_t)u);
 }
 
-static char	*ft_precision(uintmax_t u, t_holder *h, char *base)
+static void	ft_alternate(t_holder *h)
 {
-	char *tmp;
-	char hash_start[3];
+	int len;
 
-	hash_start[0] = '0';
-	hash_start[1] = h->conversion;
-	if (u == 0 && h->precision == 0)
-		tmp = (ft_strdup(STR_EMPTY));
-	else
-		tmp = ft_pad_left(ft_uitoa_base(u, base), '0', h->precision);
-	if (u > 0 && h->conversion != 'u' && h->flags & FLAG_HASH)
-		return (ft_strjoin(hash_start, tmp));
-	return (tmp);
-}
-
-static char	*ft_width(char *src, t_holder *h)
-{
-	char	pad;
-	char	*dest;
-	int		src_len;
-
-	pad = ' ';
-	src_len = (int)ft_strlen(src);
-	if (h->width <= src_len)
-		return (ft_strdup(src));
-	if (h->flags & FLAG_MINUS)
-		dest = ft_pad_right(src, pad, h->width);
-	else
+	len = (int)ft_strlen(h->replace);
+	if (h->flags & FLAG_HASH)
 	{
-		if ((h->flags & FLAG_ZERO) && h->precision < 0)
-			pad = '0';
-		dest = ft_pad_left(src, pad, h->width);
-		if (pad == '0' && src[1] == h->conversion)
-		{
-			dest[1] = h->conversion; 
-			dest[h->width - src_len + 1] = pad;
-		}
+		if (h->conversion == 'x' || h->conversion == 'X')
+			ft_pad_left(&h->replace, h->conversion, ++len);
+		ft_pad_left(&h->replace, ZERO, ++len);
 	}
-	return (dest);
 }
 
-char		*ft_conversion_ux(t_holder *h, va_list args, char *base)
+static void	ft_precision(uintmax_t u, t_holder *h, const char *base)
+{
+	if (h->flags & FLAG_SPACE)
+		h->prefix = ' ';
+	if (h->flags & FLAG_PLUS)
+		h->prefix = '+';
+	if (u == 0 && !h->precision)
+		h->replace = ft_strdup(STR_EMPTY);
+	else
+		h->replace = ft_uitoa_base(u, base);
+	ft_pad_left(&h->replace, '0', h->precision);
+	ft_alternate(h);
+	if (h->flags & FLAG_MINUS)
+		ft_pad_right(&h->replace, ' ', h->width);
+	else if ((h->flags & FLAG_ZERO) && h->precision < 0)
+		ft_pad_left(&h->replace, '0', h->width);
+	ft_pad_left(&h->replace, ' ', h->width);
+}
+
+void		ft_conversion_ux(t_holder *h, va_list args, const char *base)
 {
 	uintmax_t	u;
-	char		*replace;
-	char		*tmp;
 
 	u = ft_length(h, args);
-	tmp = ft_precision(u, h, base);
-	replace = ft_width(tmp, h);
-	free(tmp);
-	h->len = ft_strlen(replace);
-	return (replace);
+	ft_precision(u, h, base);
+	h->len = ft_strlen(h->replace);
 }
