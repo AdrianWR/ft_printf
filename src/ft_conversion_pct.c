@@ -6,7 +6,7 @@
 /*   By: aroque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 02:36:43 by aroque            #+#    #+#             */
-/*   Updated: 2020/02/09 02:41:55 by aroque           ###   ########.fr       */
+/*   Updated: 2020/02/10 20:46:42 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,19 @@
 char	*ft_conversion_pct(t_holder *h)
 {
 	char	pad;
-	char	*src;
 
 	pad = ' ';
+	h->replace = ft_strdup("%");
 	if (!h->width)
 		h->width++;
 	if (h->flags & FLAG_MINUS)
-		src = ft_pad_right("%", pad, h->width);
+		ft_pad_right(h->replace, pad, h->width);
 	else
 	{
 		if (h->flags & FLAG_ZERO)
 			pad = '0';
-		src = ft_pad_left("%", pad, h->width);
+		ft_pad_left(h->replace, pad, h->width);
 	}
-	h->len = ft_strlen(src);
-	return (src);
+	h->len = ft_strlen(h->replace);
+	return (h->replace);
 }

@@ -6,7 +6,7 @@
 /*   By: aroque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 02:47:31 by aroque            #+#    #+#             */
-/*   Updated: 2020/02/10 15:44:49 by adrian           ###   ########.fr       */
+/*   Updated: 2020/02/11 00:33:52 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,10 @@
 # define PLACEHOLDER_FLAGS			"+- 0#"
 # define PLACEHOLDER_CONVERSIONS	"nfgecspdiuxXo%"
 
-# define MINUS		"-"
-# define PLUS		"+"
-# define SPACE		" "
-# define ZERO		"0"
-# define SIGNALS	"+- "
+# define MINUS		'-'
+# define PLUS		'+'
+# define SPACE		' '
+# define ZERO		'0'
 
 # define WIDTH		0
 # define PRECISION	1
@@ -107,10 +106,10 @@ void			ft_parser_dump(t_holder *h);
 */
 
 char			*ft_conversion_p(t_holder *h, va_list args);
-char			*ft_conversion_d(t_holder *h, va_list args);
+void			ft_conversion_d(t_holder *h, va_list args);
 char			*ft_conversion_ux(t_holder *h, va_list args, char *base);
-char			*ft_conversion_s(t_holder *h, va_list args);
-char			*ft_conversion_c(t_holder *h, va_list args);
+void			ft_conversion_s(t_holder *h, va_list args);
+void			ft_conversion_c(t_holder *h, va_list args);
 char			*ft_conversion_pct(t_holder *h);
 char			*ft_conversion_f(t_holder *h, va_list args);
 
@@ -123,8 +122,8 @@ char			*ft_conversion_f(t_holder *h, va_list args);
 t_format		*ft_format_initializer(const char *format, va_list args);
 void			ft_placeholder(int fd, t_format *fmt);
 void			ft_replace(t_holder *h, va_list args);
-void			ft_pad_left(char *src, char pad, int width);
-void			ft_pad_right(char *src, char pad, int width);
+void			ft_pad_left(char **src, char pad, int width);
+void			ft_pad_right(char **src, char pad, int width);
 void			ft_prefix(t_holder *h);
 char			*ft_uitoa_base(uintmax_t n, const char *base);
 char			*ft_ftoa(float f);

@@ -6,7 +6,7 @@
 /*   By: aroque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 13:33:39 by aroque            #+#    #+#             */
-/*   Updated: 2020/02/10 15:25:04 by adrian           ###   ########.fr       */
+/*   Updated: 2020/02/11 00:46:16 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,12 @@ int main(void)
 
 	//char a = 4;
 
+	ft_printf_test("%c\n", 'c');
+	ft_printf_test("%5c\n", 'c');
+	ft_printf_test("%-5c\n", 'c');
+	ft_printf_test("%c\n", '\0');
+	ft_printf_test("%5c\n", '\0');
+	ft_printf_test("%-5c\n", '\0');
 	//ft_printf("%f\n", 4.2);
 	//ft_printf("%f\n", 0.00123);
 	//ft_printf("%f\n", 12441200.0);
@@ -86,11 +92,12 @@ int main(void)
 	//ft_printf_test("%4.3d\n", 2890);
 	//ft_printf_test("Teste %#00*.*d, esse é o teste %s\n", 10, 5, 42, "legal");
 	//ft_printf_test("Teste %0%\n");
-	//ft_printf("%s\n", "string");
-	//ft_printf_test("%8.3s\n", "string");
-	//ft_printf_test("%-8.3s\n", "string");
-	//ft_printf_test("%8.s\n", "string");
-	//ft_printf_test("%8.1s\n", "string");
+	ft_printf("%s\n", "string");
+	ft_printf_test("%8.3s\n", "string");
+	ft_printf_test("%-8.3s\n", "string");
+	ft_printf_test("%8.s\n", "string");
+	ft_printf_test("%8.1s\n", "string");
+	ft_printf("%s\n", NULL);
 	//ft_printf_test("%.03s\n", NULL);
 	//ft_printf_test("%3.1s\n", NULL);
 	//ft_printf_test("%9.1s\n", NULL);
@@ -120,12 +127,23 @@ int main(void)
 	//ft_printf_test("Teste %4c\n", 'a');
 	//ft_printf_test("Teste %4u\n", 23);
 	//ft_printf_test("Teste %4u\n", -23);
-	ft_printf_test("Teste %d\n", -1);
-	//ft_printf_test("Teste %5d\n", 20);
-	//ft_printf_test("Teste %5.1d\n", 20);
-	//ft_printf_test("Teste %-d\n", 42);
-	//ft_printf_test("Teste %10d legal\n", 42);
-	//ft_printf_test("Teste %-10d legal\n", 42);
+
+	/* d and i conversions */
+	ft_printf_test("%d\n", 0);
+	ft_printf_test("%5d\n", 0);
+	ft_printf_test("%5.3d\n", 0);
+	ft_printf_test("%+5.3d\n", 0);
+	ft_printf_test("%-+5.3d\n", 0);
+	ft_printf_test("%-+05.3d\n", 0);
+	ft_printf_test("%d\n", 1);
+	ft_printf_test("%+d\n", 1);
+	ft_printf_test("%d\n", -1);
+	ft_printf_test("%5.4d\n", -1);
+	ft_printf_test("Teste %5d\n", 20);
+	ft_printf_test("Teste %5.1d\n", 20);
+	ft_printf_test("Teste %-d\n", 42);
+	ft_printf_test("Teste %10d legal\n", 42);
+	ft_printf_test("Teste %-10d legal\n", 42);
 	//ft_printf_test("Teste %-10s legal\n", "show");
 	//ft_printf_test("Teste %04d\n", 5);
 	//ft_printf_test("Teste %s\n", NULL);
