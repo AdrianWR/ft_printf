@@ -6,7 +6,7 @@
 /*   By: aroque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 02:47:31 by aroque            #+#    #+#             */
-/*   Updated: 2020/02/11 18:56:12 by aroque           ###   ########.fr       */
+/*   Updated: 2020/02/12 14:03:28 by adrian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include "libft.h"
 
 # define PLACEHOLDER_FLAGS			"+- 0#"
-# define PLACEHOLDER_CONVERSIONS	"nfgecspdiuxXo%"
+# define PLACEHOLDER_CONVERSIONS	"cspdiuxXo%"
 
 # define MINUS		'-'
 # define PLUS		'+'
@@ -47,8 +47,6 @@
 # define HEX_BASE_L	"0123456789abcdef"
 # define HEX_BASE_U	"0123456789ABCDEF"
 # define OCT_BASE	"01234567"
-
-# define MANTISSA_MASK 0x7fffff
 
 # define STR_NULL	"(null)"
 # define STR_EMPTY	""
@@ -111,7 +109,6 @@ void			ft_conversion_p(t_holder *h, va_list args);
 void			ft_conversion_d(t_holder *h, va_list args);
 void			ft_conversion_s(t_holder *h, va_list args);
 void			ft_conversion_c(t_holder *h, va_list args);
-void			ft_conversion_f(t_holder *h, va_list args);
 void			ft_conversion_ux(t_holder *h, va_list args, const char *base);
 
 /*
@@ -127,7 +124,6 @@ void			ft_pad_left(char **src, char pad, int width);
 void			ft_pad_right(char **src, char pad, int width);
 void			ft_prefix(t_holder *h);
 char			*ft_uitoa_base(uintmax_t n, const char *base);
-char			*ft_ftoa(float f);
 
 /*
 **	░░░░░░░█▐▓▓░████▄▄▄█▀▄▓▓▓▌█

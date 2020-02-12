@@ -6,7 +6,7 @@
 /*   By: aroque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 08:29:59 by aroque            #+#    #+#             */
-/*   Updated: 2020/02/11 21:49:22 by aroque           ###   ########.fr       */
+/*   Updated: 2020/02/12 14:07:02 by adrian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static void			ft_alternate(uintmax_t u, t_holder *h)
 	}
 }
 
-static void			ft_precision(uintmax_t u, t_holder *h, const char *base)
+static void			ft_conversion(uintmax_t u, t_holder *h, const char *base)
 {
 	if (h->flags & FLAG_SPACE)
 		h->prefix = ' ';
@@ -80,6 +80,6 @@ void				ft_conversion_ux(t_holder *h, va_list args, const char *b)
 	uintmax_t	u;
 
 	u = ft_length(h, args);
-	ft_precision(u, h, b);
+	ft_conversion(u, h, b);
 	h->len = ft_strlen(h->replace);
 }

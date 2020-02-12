@@ -6,11 +6,18 @@
 /*   By: aroque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 22:03:20 by aroque            #+#    #+#             */
-/*   Updated: 2020/02/11 21:48:24 by aroque           ###   ########.fr       */
+/*   Updated: 2020/02/12 13:57:49 by adrian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+/*
+**	Identify the conversion or specifier
+**	and select the function to be applied
+**	to format the arguement based on the
+**	placeholder information.
+*/
 
 void	ft_replace(t_holder *h, va_list args)
 {
@@ -31,18 +38,18 @@ void	ft_replace(t_holder *h, va_list args)
 	else if (h->conversion == '%')
 		ft_conversion_pct(h);
 	//else if (h->conversion == 'n')
-	//	h->replace = ft_conversion_pct(h);
-	else if (h->conversion == 'f')
-		ft_conversion_f(h, args);
-	//else if (h->conversion == 'g')
-	//	h->replace = ft_conversion_pct(h);
-	//else if (h->conversion == 'e')
-	//	h->replace = ft_conversion_pct(h);
+	//	h->replace = ft_conversion_n(h);
 }
 
 /*
-**	Insert some pad characters to a string
-** 	accordingly to a given width.
+**	Insert some padding characters to a string
+** 	accordingly to a given width. A new string
+**  is returned containing the source, plus
+** 	width - strlen(source) padding characters
+**	inserted on the left or right position
+**	relative to the the source. The ft_prefix
+**	function is a special case, adding one prefix
+**	character to a string regardless of the width.
 */
 
 void	ft_pad_left(char **src, char pad, int width)

@@ -6,7 +6,7 @@
 /*   By: aroque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 14:09:14 by aroque            #+#    #+#             */
-/*   Updated: 2020/02/11 09:40:33 by adrian           ###   ########.fr       */
+/*   Updated: 2020/02/12 10:25:41 by adrian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*ft_strdup(const char *s1)
 	char	*s;
 
 	i = -1;
-	if (!(s = malloc((ft_strlen(s1) + 1) * sizeof(*s))) || !s1)
+	if (!s1 || !(s = malloc((ft_strlen(s1) + 1) * sizeof(*s))))
 		return (NULL);
 	while (s1[++i])
 		s[i] = s1[i];
