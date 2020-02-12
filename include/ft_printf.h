@@ -6,7 +6,7 @@
 /*   By: aroque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 02:47:31 by aroque            #+#    #+#             */
-/*   Updated: 2020/02/12 14:03:28 by adrian           ###   ########.fr       */
+/*   Updated: 2020/02/12 19:43:00 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include "libft.h"
 
 # define PLACEHOLDER_FLAGS			"+- 0#"
-# define PLACEHOLDER_CONVERSIONS	"cspdiuxXo%"
+# define PLACEHOLDER_CONVERSIONS	"cspdiuxX%"
 
 # define MINUS		'-'
 # define PLUS		'+'
@@ -89,6 +89,7 @@ int				ft_vdprintf(int fd, const char *format, va_list ap);
 **	------------------------
 */
 
+t_holder		*ft_holder_initializer(void);
 t_holder		*ft_parser(t_format *f);
 int				ft_parser_star(char option, t_format *f, t_holder *h);
 void			ft_parser_flags(t_format *f, t_holder *h);
