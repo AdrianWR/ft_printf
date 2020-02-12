@@ -6,7 +6,7 @@
 /*   By: aroque <aroque@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 23:23:37 by aroque            #+#    #+#             */
-/*   Updated: 2020/02/11 12:13:34 by adrian           ###   ########.fr       */
+/*   Updated: 2020/02/11 21:49:17 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static intmax_t	ft_length(t_holder *h, va_list args)
 	return ((intmax_t)d);
 }
 
-static void	ft_precision(intmax_t d, t_holder *h)
+static void		ft_precision(intmax_t d, t_holder *h)
 {
 	if (h->flags & FLAG_SPACE)
 		h->prefix = ' ';
@@ -57,7 +57,7 @@ static void	ft_precision(intmax_t d, t_holder *h)
 	ft_pad_left(&h->replace, ' ', h->width);
 }
 
-void		ft_conversion_d(t_holder *h, va_list args)
+void			ft_conversion_d(t_holder *h, va_list args)
 {
 	intmax_t	d;
 

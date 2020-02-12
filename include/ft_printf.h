@@ -6,7 +6,7 @@
 /*   By: aroque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 02:47:31 by aroque            #+#    #+#             */
-/*   Updated: 2020/02/11 14:09:44 by adrian           ###   ########.fr       */
+/*   Updated: 2020/02/11 18:56:12 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # define PLUS		'+'
 # define SPACE		' '
 # define ZERO		'0'
+# define X			'x'
 
 # define WIDTH		0
 # define PRECISION	1

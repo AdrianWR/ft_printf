@@ -6,7 +6,7 @@
 /*   By: aroque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 15:43:00 by aroque            #+#    #+#             */
-/*   Updated: 2020/02/11 09:47:50 by adrian           ###   ########.fr       */
+/*   Updated: 2020/02/11 21:48:50 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static wint_t	ft_length(t_holder *h, va_list args)
 	return ((wint_t)c);
 }
 
-void		ft_conversion_c(t_holder *h, va_list args)
+void			ft_conversion_c(t_holder *h, va_list args)
 {
 	wint_t	c;
 

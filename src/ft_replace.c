@@ -6,7 +6,7 @@
 /*   By: aroque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 22:03:20 by aroque            #+#    #+#             */
-/*   Updated: 2020/02/11 15:26:52 by adrian           ###   ########.fr       */
+/*   Updated: 2020/02/11 21:48:24 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,4 @@ void	ft_prefix(t_holder *h)
 		len = (int)ft_strlen(h->replace) + 1;
 		ft_pad_left(&h->replace, h->prefix, len);
 	}
-	//printf("prefix -> %c\n", h->prefix);
-	//printf("replace -> %s\n", h->replace);
 }

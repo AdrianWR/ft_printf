@@ -6,12 +6,20 @@
 /*   By: aroque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 08:29:59 by aroque            #+#    #+#             */
-/*   Updated: 2020/02/11 12:28:54 by adrian           ###   ########.fr       */
+/*   Updated: 2020/02/11 21:49:22 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
+
+static void			ft_swap(char *a, char *b)
+{
+	char tmp;
+
+	tmp = *a;
+	*a = *b;
+	*b = tmp;
+}
 
 static uintmax_t	ft_length(t_holder *h, va_list args)
 {
@@ -30,20 +38,20 @@ static uintmax_t	ft_length(t_holder *h, va_list args)
 	return ((uintmax_t)u);
 }
 
-static void	ft_alternate(t_holder *h)
+static void			ft_alternate(uintmax_t u, t_holder *h)
 {
-	int len;
-
-	len = (int)ft_strlen(h->replace);
+	h->len = ft_strlen(h->replace);
 	if (h->flags & FLAG_HASH)
 	{
+		if (!u)
+			return ;
 		if (h->conversion == 'x' || h->conversion == 'X')
-			ft_pad_left(&h->replace, h->conversion, ++len);
-		ft_pad_left(&h->replace, ZERO, ++len);
+			ft_pad_left(&h->replace, h->conversion, ++h->len);
+		ft_pad_left(&h->replace, ZERO, ++h->len);
 	}
 }
 
-static void	ft_precision(uintmax_t u, t_holder *h, const char *base)
+static void			ft_precision(uintmax_t u, t_holder *h, const char *base)
 {
 	if (h->flags & FLAG_SPACE)
 		h->prefix = ' ';
@@ -54,19 +62,24 @@ static void	ft_precision(uintmax_t u, t_holder *h, const char *base)
 	else
 		h->replace = ft_uitoa_base(u, base);
 	ft_pad_left(&h->replace, '0', h->precision);
-	ft_alternate(h);
-	if (h->flags & FLAG_MINUS)
+	ft_alternate(u, h);
+	if ((h->flags & FLAG_ZERO) && h->precision < 0)
+	{
+		ft_pad_left(&h->replace, ZERO, h->width);
+		if (h->width > (int)h->len && h->flags & FLAG_HASH && u)
+			ft_swap(&h->replace[1], &h->replace[h->width - h->len + 1]);
+	}
+	else if (h->flags & FLAG_MINUS)
 		ft_pad_right(&h->replace, ' ', h->width);
-	else if ((h->flags & FLAG_ZERO) && h->precision < 0)
-		ft_pad_left(&h->replace, '0', h->width);
-	ft_pad_left(&h->replace, ' ', h->width);
+	else
+		ft_pad_left(&h->replace, ' ', h->width);
 }
 
-void		ft_conversion_ux(t_holder *h, va_list args, const char *base)
+void				ft_conversion_ux(t_holder *h, va_list args, const char *b)
 {
 	uintmax_t	u;
 
 	u = ft_length(h, args);
-	ft_precision(u, h, base);
+	ft_precision(u, h, b);
 	h->len = ft_strlen(h->replace);
 }
