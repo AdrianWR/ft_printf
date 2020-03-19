@@ -12,6 +12,24 @@
 
 #include "ft_printf.h"
 
+/*
+** These functions aim to reproduce the same behavior as its
+** counterparts on <stdio.h> library. Further information should
+** be get on its manual page (probably man 3 printf)
+**
+** Besides the implementation of the mandatory ft_printf function,
+** I found useful to implmement sister functions of the printf
+** family, which are the following ones:
+** -> ft_vprintf:  Writes the formatted string to STDOUT_FILENO.
+**                 Takes a va_list as parameter.
+** -> ft_dprintf:  Writes the formatted string to a file descriptor.
+**                 Takes variadic arguments as parameter.
+** -> ft_vdprintf: Writes the formatted string to a file descriptor.
+**                 Takes a va_list as parameter.
+** All the functions have the same return as ft_printf, which are the
+** number of bytes written succesfullly.
+*/
+
 int	ft_printf(const char *format, ...)
 {
 	int		len;
