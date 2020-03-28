@@ -6,35 +6,41 @@
 #    By: aroque <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/26 02:48:28 by aroque            #+#    #+#              #
-#    Updated: 2020/02/09 02:40:26 by aroque           ###   ########.fr        #
+#    Updated: 2020/03/28 17:47:38 by aroque           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	run
 
-CC			=	gcc
-CC_FLAGS	=	#-g					\
-				-Wall				\
-				-Wextra				\
-				-Werror
+LIBFTPRINTF_DIR		=	..
+LIBFTPRINTF			=	${LIBFTPRINTF_DIR}/libftprintf.a
+LIBFT_DIR			=	../libft
 
-INCLUDES	=	../include
+CC			=	gcc
+CC_FLAGS	=	-g							\
+				-Wall						\
+				-Wextra						\
+				-Werror						\
+				-I${LIBFT_DIR}				\
+				-I${LIBFTPRINTF_DIR}/include\
+				-L${LIBFT_DIR}				\
+				-L${LIBFTPRINTF_DIR}		\
+				-lft						\
+				-lftprintf
+
 
 SRC_DIR		=	.
 SRC			=	${SRC_DIR}/test_suite.c
 
-LIB_DIR		=	..
-LIB			=	${LIB_DIR}/libftprintf.a
-LIBFT_DIR	=	../libft
 
 all: $(NAME)
 	./$(NAME)
 
-$(NAME): $(SRC) $(LIB)
-	$(CC) $(CC_FLAGS) -I${INCLUDES} -I${LIBFT_DIR} $^ -o $@
+$(NAME): $(SRC) $(LIBFTPRINTF)
+	$(CC) $< $(CC_FLAGS) -I${INCLUDE} -I${LIBFT_DIR} -L${LIBFTPRINTF_DIR} -lftprintf -lft -o $@
 
-$(LIB):
-	$(MAKE) -C $(LIB_DIR)
+$(LIBFTPRINTF):
+	$(MAKE) -C $(LIBFTPRINTF_DIR)
 
 clean:
 
