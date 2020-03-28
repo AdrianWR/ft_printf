@@ -6,7 +6,7 @@
 #    By: aroque <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/26 02:48:28 by aroque            #+#    #+#              #
-#    Updated: 2020/03/28 17:26:03 by aroque           ###   ########.fr        #
+#    Updated: 2020/03/28 17:52:36 by aroque           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,8 +69,9 @@ clean:
 	$(RM) $(OBJ)
 
 fclean: clean
+	$(MAKE) -C $(LIBFT_DIR) fclean
 	$(MAKE) -C $(TEST_DIR) fclean
-	$(RM) $(NAME) ${LIBFT}
+	$(RM) $(NAME)
 
 re: fclean all
 
