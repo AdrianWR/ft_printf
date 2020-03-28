@@ -6,22 +6,28 @@
 #    By: aroque <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/26 02:48:28 by aroque            #+#    #+#              #
-#    Updated: 2020/02/12 19:37:49 by aroque           ###   ########.fr        #
+#    Updated: 2020/03/28 17:15:21 by aroque           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	libftprintf.a
 
+LIBFT_DIR	=	./libft
+LIBFT		=	${LIB_DIR}/libft.a
+
+INCLUDE_DIR	=	./include
+
 CC			=	gcc
 CC_FLAGS	=	-Wall	\
 				-Wextra	\
 				-Werror	\
-				-g
+				-I${INCLUDE_DIR}	\
+				-I${LIBFT_DIR}		\
+				-L${LIBFT_DIR}		\
+				-lft
 
 AR			=	ar
 AR_FLAGS	=	rcs
-
-INCLUDES	=	./include
 
 SRC_DIR		=	./src
 SRC			=	${SRC_DIR}/ft_printf.c			\
@@ -43,32 +49,28 @@ SRC			=	${SRC_DIR}/ft_printf.c			\
 OBJ_DIR		=	./build
 OBJ			=	$(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC))
 
-LIB_DIR		=	./libft
-LIB			=	${LIB_DIR}/libft.a
-
 TEST_DIR	=	./test
 
 all: $(NAME)
 
-$(NAME): $(OBJ) $(LIB)
-	@cp $(LIB) $(OBJ_DIR)
-	@mv $(subst $(LIB_DIR), $(OBJ_DIR), $(LIB)) $(NAME)
-	$(AR) $(AR_FLAGS) $@ $(OBJ)
+$(NAME): $(OBJ)
+	$(AR) $(AR_FLAGS) $@ $^
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-	$(CC) $(CC_FLAGS) -I${INCLUDES} -I${LIB_DIR} -c $< -o $@
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(LIBFT)
+	@mkdir -p ${OBJ_DIR}
+	$(CC) $(CC_FLAGS) -c $< -o $@
 
 $(LIB):
-	$(MAKE) -C $(LIB_DIR)
+	$(MAKE) -C $(LIBFT_DIR)
 
 clean:
-	$(MAKE) -C $(LIB_DIR) clean
+	$(MAKE) -C $(LIBFT_DIR) clean
 	$(MAKE) -C $(TEST_DIR) clean
 	$(RM) $(OBJ)
 
 fclean: clean
 	$(MAKE) -C $(TEST_DIR) fclean
-	$(RM) $(NAME) ${LIB}
+	$(RM) $(NAME) ${LIBFT}
 
 re: fclean all
 
