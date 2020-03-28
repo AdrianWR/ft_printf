@@ -6,7 +6,7 @@
 /*   By: aroque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 02:46:09 by aroque            #+#    #+#             */
-/*   Updated: 2020/02/09 04:46:26 by aroque           ###   ########.fr       */
+/*   Updated: 2020/03/28 14:08:10 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,8 @@ int	ft_vdprintf(int fd, const char *format, va_list args)
 			ft_placeholder(fd, fmt);
 		else
 		{
-			fmt->len += ft_putchar_fd(fmt->input[fmt->pos], fd);
+			ft_putchar_fd(fmt->input[fmt->pos], fd);
+			fmt->len++;
 			fmt->pos++;
 		}
 	}
