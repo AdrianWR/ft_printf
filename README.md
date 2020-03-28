@@ -24,3 +24,18 @@ At 42 Schools around the world, one of the first projects available is the reimp
 | **x**		 | int in hex base (lowercase)	|
 | **X**		 | int in hex base (uppercase)	|
 | **%**		 | '%' char literal				|
+
+## Getting Started
+The static library `libftprintf.a` is ready to use after compilation. Pay attention to the requirement of `libft.a`, so any dependencies are fetched right away. The following script may be suitable to build on any macOS or Linux system.
+
+	git clone git@github.com:AdrianWR/ft_printf.git --recurse-submodules
+
+## Linking to your project
+If, by some obscureous reason you must use an alternative to libc's printf function, you may use this library by running the following script:
+
+	git submodule add git@github.com:AdrianWR/ft_printf.git
+	git submodule update --init --recursive
+
+Link the library to your project with the following compilation flags:
+
+	-I.<path/to/ft_printf_repository/include> -L.<path/to/ft_printf_repository> -lftprintf
