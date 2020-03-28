@@ -6,7 +6,7 @@
 #    By: aroque <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/26 02:48:28 by aroque            #+#    #+#              #
-#    Updated: 2020/03/28 17:15:21 by aroque           ###   ########.fr        #
+#    Updated: 2020/03/28 17:26:03 by aroque           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,7 +60,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(LIBFT)
 	@mkdir -p ${OBJ_DIR}
 	$(CC) $(CC_FLAGS) -c $< -o $@
 
-$(LIB):
+$(LIBFT):
 	$(MAKE) -C $(LIBFT_DIR)
 
 clean:
